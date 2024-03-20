@@ -2,7 +2,7 @@
 title: Note di Microeconomia
 author: Alfredo Di Tillio
 parts:
-  - title: Titolo della Parte I
+  - title: Mercati e Concorrenza
     folder: parte1
     number: Parte I
     chapters:
@@ -15,7 +15,7 @@ parts:
       - title: Titolo del Capitolo 3
         filename: capitolo3
         number: 3
-  - title: Titolo della Parte II
+  - title: Informazione
     folder: parte2
     number: Parte II
     chapters:
