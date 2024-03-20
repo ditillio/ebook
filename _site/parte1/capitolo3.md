@@ -2,7 +2,7 @@ This is the first page of the whole book. Huzzah!
 
 Here is a graph ...
 
-{% include textbook-graph.html topic="competition" subtopic="demand" graph="two_consumers" %}
+{% include textbook-graph.html topic="markets" subtopic="demand" graph="graph-demand" %}
 
 Here is another:
 
