@@ -2,17 +2,17 @@
 title: Note di Microeconomia
 author: Alfredo Di Tillio
 parts:
-  - title: Mercati e Concorrenza
+  - title: Mercati e concorrenza
     folder: parte1
     number: Parte I
     chapters:
-      - title: Introduzione
+      - title: Domanda - Teoria del consumatore
         filename: capitolo1
         number: 1
-      - title: Titolo del Capitolo 2
+      - title: Offerta - L'impresa monopolistica
         filename: capitolo2
         number: 2
-      - title: Titolo del Capitolo 3
+      - title: Concorrenza
         filename: capitolo3
         number: 3
   - title: Informazione
