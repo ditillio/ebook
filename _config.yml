@@ -17,7 +17,7 @@ title: Alfredo di Dillio
 email: alfredoditillio@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Demo for Using Econgraphs at Bocconi
-baseurl: "/demo" # the subpath of your site, e.g. /blog
+baseurl: "/ebook" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
