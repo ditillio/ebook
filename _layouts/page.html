@@ -1,0 +1,36 @@
+<!doctype html>
+{% assign depth = 0 %}
+{% assign path = page.path | split: '/' %}
+{% assign filename = path[1] | remove: '.md' %}
+{% assign textbook = site.data.toc %}
+{% assign parts = textbook.parts | where: "folder", path[0] %}
+{% assign part = parts[0] %}
+{% assign chapters = part.chapters | where: "filename", filename %}
+{% assign chapter = chapters[0] %}
+{% if page.version %}
+{% assign version = page.version %}
+{% else %}
+{% assign version = "0.3.1" %}
+{% endif %}
+<html lang="en">
+<head>
+    <title>{{ chapter.title }}</title>
+    {% include stylesheets.html KGversion=version bootstrap=false textbook=true %}
+</head>
+<body>
+<article>
+    <div class="subtitle">
+        <a href="{{ site.url }}/demo">Back</a>
+    </div>
+    <h1>{{ chapter.title }}</h1>
+    <hr/>
+    <section>
+        {{ content }}
+    </section>
+</article>
+<div class="watermark">
+    Copyright (c) {{ site.author}}
+</div>
+</body>
+{% include scripts.html KGversion=version bootstrap=false renderMath=true %}
+</html>
