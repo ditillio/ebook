@@ -18,4 +18,3 @@
 {% assign next = include.list[nextIndex] %}
 <div class="subtitle">{% if language == "it" %}Seguente{% else %}Next{% endif %}: <a href="{{ nextIndex | plus: 1 }}">{{ next.title[language] }}</a></div>
 {% endif %}
-
