@@ -8,6 +8,7 @@
     {% include stylesheets.html KGversion="0.3.1" bootstrap=false textbook=true %}
 </head>
 <body>
+    {% include header.html language=language %}
     {% assign textbook = site.data.toc %}
     <article>
         <h1>{{ textbook.title[language] }}</h1>
