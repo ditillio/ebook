@@ -11,7 +11,7 @@ parts:
     chapters:
       - folder: 1
         title:
-          en: Question - Consumer theory
+          en: Demand - Consumer theory
           it: Domanda - Teoria del consumatore
         sections:
           - title:
