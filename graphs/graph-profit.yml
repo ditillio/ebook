@@ -187,11 +187,3 @@ layout:
         - html: "`<br/><hr/><br/>Dato che $$P= AC_{min}= 8$$ il massimo profitto dell'impresa è zero.
         L'impresa è indifferente tra non produrre affatto e scegliere la scala efficiente di produzione $q=16$.`"
           show: params.p == 8
-
-
-#    sidebar:
-#      controls:
-#        - title: Optimal Quantity as a function of price
-#          sliders:
-#            - param: p
-#              label: p

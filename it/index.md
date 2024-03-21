@@ -1,4 +1,4 @@
 ---
-title: Note di Microeconomica
+title: Note di Microeconomia
 layout: toc
 ---
