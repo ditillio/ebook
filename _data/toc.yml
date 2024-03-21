@@ -1,30 +1,53 @@
 ---
-title: Note di Microeconomia
+title:
+  en: Notes on Microeconomics
+  it: Note di Microeconomia
 author: Alfredo Di Tillio
 parts:
-  - title: Mercati e concorrenza
-    folder: parte1
-    number: Parte I
+  - folder: I
+    title: 
+      en: Markets and competition
+      it: Mercati e concorrenza
     chapters:
-      - title: Domanda - Teoria del consumatore
-        filename: capitolo1
-        number: 1
-      - title: Offerta - L'impresa monopolistica
-        filename: capitolo2
-        number: 2
-      - title: Concorrenza
-        filename: capitolo3
-        number: 3
-  - title: Informazione
-    folder: parte2
-    number: Parte II
+      - folder: 1
+        title:
+          en: Question - Consumer theory
+          it: Domanda - Teoria del consumatore
+        sections:
+          - title:
+              en: Title of Section 1.1
+              it: Titolo di Sezione 1.1
+          - title:
+              en: Title of Section 1.2
+              it: Titolo di Sezione 1.2  
+      - folder: 2
+        title:
+          en: Supply - The Monopolistic Firm
+          it: Offerta - L'impresa monopolistica
+          sections:
+          - title:
+              en: Title of Section 2.1
+              it: Titolo di Sezione 2.1
+          - title:
+              en: Title of Section 2.2
+              it: Titolo di Sezione 2.2  
+      - folder: 3
+        title:
+          en: Competition
+          it: Concorrenza
+  - title:
+      en: Information
+      it: Informazione
+    folder: II
     chapters:
-      - title: Titolo del Capitolo 4
-        filename: capitolo4
-        number: 4
-      - title: Titolo del Capitolo 5
-        filename: capitolo5
-        number: 5
-      - title: Titolo del Capitolo 6
-        filename: capitolo6
-        number: 6
+      - folder: 4
+        title:
+          en: Title of Chapter 4
+          it: Titolo di Sezione 4
+        sections:
+          - title:
+              en: Title of Section 4.1
+              it: Titolo di Sezione 4.1
+          - title:
+              en: Title of Section 4.2
+              it: Titolo di Sezione 4.2 
