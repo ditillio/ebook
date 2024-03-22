@@ -3,3 +3,4 @@ Gemfile.lock
 _site/*
 vendor/
 _site/feed.xml
+*.xml
