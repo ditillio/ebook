@@ -109,7 +109,7 @@ layout:
 
     sidebar:
       controls:
-      - title: From individual demand to market demand
+      - title: From individual ITA demand to market demand
         description:
         sliders:
         - param: a
