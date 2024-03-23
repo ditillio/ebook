@@ -193,6 +193,15 @@ layout:
             min: 0
             max: max(params.a*params.m/params.p11,params.a*calcs.c/params.p12)
 
+        # Difference between CV and DeltaCS when price increases
+        - Area:
+            fn1: min(params.p11,(params.a*params.m)/(x))
+            fn2: min(params.p11,max((params.p12),((params.a*params.m)/((x)*((params.p11)^params.a)))^(1/(1-params.a))))
+            fill: Blue
+            opacity: 0.2
+            min: 0
+            max: params.a*params.m/params.p12
+
 
     sidebar:
       controls:
