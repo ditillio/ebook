@@ -1,0 +1,110 @@
+
+colors:
+  marginalCost: colors.red
+  averageCost: colors.purple
+  totalCost: colors.red
+
+params:
+  - name: a
+    value: 0.5
+    min: 0.1
+    max: 0.75
+    round: 0.05
+  - name: p
+    value: 1.2
+    min: 0.5
+    max: 2
+    round: 0.1
+
+calcs:
+  z: (2*params.a)
+aspectRatio: 0.55
+
+layout:
+  TwoVerticalGraphsPlusSidebar:
+
+    topGraph:
+      yAxis:
+        title: Unità di $Y$
+        max: 22
+        min: 0
+        ticks: 1
+      xAxis:
+        title: Unità di $X$
+        max: 32
+        min: 0
+        ticks: 1
+      objects:
+
+        # Original indifference curve
+        - EconIndifferenceCurve:
+            utilityFunction:
+              CobbDouglas: {alpha: (params.a)}
+            level: 20*((params.a)^(params.a))*((1-params.a)^(1-params.a))
+            color: red
+            label: dd
+            strokeWidth: 1
+
+        # New indifference curve
+        - EconIndifferenceCurve:
+            utilityFunction:
+              CobbDouglas: {alpha: (params.a)}
+            level: 20*((params.a/params.p)^(params.a))*((1-params.a)^(1-params.a))
+            color: red
+            label: dd
+            strokeWidth: 1
+
+        # Original budget line
+        - Line:
+            slope: -1
+            point: [0,20]
+            color: blue
+            label:
+              text: VB
+              x: 33
+              position: tl
+            strokeWidth: 1
+
+        # New budget line
+        - Line:
+            slope: -params.p
+            point: [0,20]
+            color: blue
+            label:
+              text: VB
+              x: 33
+              position: tl
+            strokeWidth: 1
+
+    bottomGraph:
+      yAxis:
+        title: Euro
+        max: 2.5
+        ticks: 2
+      xAxis:
+        title: Unità di $X$
+        max: 35
+        ticks: 0
+      objects:
+
+        # Average cost
+        - Curve:
+            fn: 64/(x) + 0.25*(x)
+            color: brown
+            label:
+              text: AC
+              x: 4
+              position: bl
+              bgcolor: none
+
+    sidebar:
+      controls:
+      - title: From individual ITA demand to market demand
+        description:
+        sliders:
+        - param: a
+          label: \alpha
+        - param: p
+          label: p_1
+        divs:
+          - html: $N$ consumers with demand $$x(P)=\frac{\alpha M}{P_X}$$
