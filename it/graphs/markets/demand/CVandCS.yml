@@ -10,15 +10,23 @@ params:
     min: 0.1
     max: 0.75
     round: 0.05
-  - name: p
-    value: 1.2
-    min: 0.5
-    max: 2
+  - name: p11
+    value: 1
+    min: 0.2
+    max: 3
     round: 0.1
+  - name: p12
+    value: 2
+    min: 0.4
+    max: 3
+    round: 0.1
+  - name: m
+    value: 20
 
 calcs:
-  z: (2*params.a)
-aspectRatio: 0.55
+  c: params.m * ((params.p12/params.p11)^(params.a))
+  p: params.p12/params.p11
+aspectRatio: 0.9
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -40,7 +48,7 @@ layout:
         - EconIndifferenceCurve:
             utilityFunction:
               CobbDouglas: {alpha: (params.a)}
-            level: 20*((params.a)^(params.a))*((1-params.a)^(1-params.a))
+            level: params.m * ((params.a/params.p11)^(params.a)) * ((1-params.a)^(1-params.a))
             color: red
             label: dd
             strokeWidth: 1
@@ -49,15 +57,15 @@ layout:
         - EconIndifferenceCurve:
             utilityFunction:
               CobbDouglas: {alpha: (params.a)}
-            level: 20*((params.a/params.p)^(params.a))*((1-params.a)^(1-params.a))
+            level: params.m * ((params.a/params.p12)^(params.a)) * ((1-params.a)^(1-params.a))
             color: red
             label: dd
             strokeWidth: 1
 
         # Original budget line
         - Line:
-            slope: -1
-            point: [0,20]
+            slope: -params.p11
+            point: [0,params.m]
             color: blue
             label:
               text: VB
@@ -67,8 +75,8 @@ layout:
 
         # New budget line
         - Line:
-            slope: -params.p
-            point: [0,20]
+            slope: -params.p12
+            point: [0,params.m]
             color: blue
             label:
               text: VB
@@ -76,26 +84,115 @@ layout:
               position: tl
             strokeWidth: 1
 
+        # Compensated budget line
+        - Line:
+            slope: -params.p12
+            point: [0,calcs.c]
+            color: blue
+            label:
+              text: VB
+              x: 33
+              position: tl
+            strokeWidth: 1
+
+        # Original optimum
+        - Point:
+            coordinates: [params.a*params.m/params.p11,(1-params.a)*params.m]
+            droplines:
+              vertical:
+
+        # New optimum
+        - Point:
+            coordinates: [params.a*params.m/params.p12,(1-params.a)*params.m]
+            droplines:
+              vertical: 
+
+        # Compensated optimum
+        - Point:
+            coordinates: [params.a*calcs.c/params.p12,(1-params.a)*calcs.c]
+            droplines:
+              vertical: 
+
     bottomGraph:
       yAxis:
         title: Euro
-        max: 2.5
-        ticks: 2
+        max: 3.2
+        ticks: 0
       xAxis:
         title: Unità di $X$
-        max: 35
+        max: 32
         ticks: 0
       objects:
 
-        # Average cost
+        # Walrasian demand function
         - Curve:
-            fn: 64/(x) + 0.25*(x)
-            color: brown
+            fn: params.a * params.m / (x)
+            color: Blue
             label:
-              text: AC
-              x: 4
+              text: x_1
+              x: 25
               position: bl
               bgcolor: none
+            strokeWidth: 1.7
+
+        # Hicksian demand function
+        - Curve:
+            fn: (( params.a * params.m ) / ( (x) * ((params.p11)^params.a) ))^(1/(1-params.a))
+            color: Purple
+            label:
+              text: x^c_1
+              x: 25
+              position: bl
+              bgcolor: none
+            strokeWidth: 1.7
+
+        # Original optimum
+        - Point:
+            coordinates: [params.a*params.m/params.p11,params.p11]
+            droplines:
+              vertical: 
+              horizontal: params.p11
+
+        # New optimum
+        - Point:
+            coordinates: [params.a*params.m/params.p12,params.p12]
+            droplines:
+              vertical: 
+              horizontal: params.p12
+
+        # Compensated optimum
+        - Point:
+            coordinates: [params.a*calcs.c/params.p12,params.p12]
+            droplines:
+              vertical: 
+              horizontal:
+
+        # Negative variation in CS when price increases
+        - Area:
+            fn1: min(params.p12,((params.a*params.m)/((x)*((params.p11)^params.a)))^(1/(1-params.a)),(params.a*params.m)/(x))
+            fn2: min(params.p11,params.p12)
+            fill: Red
+            opacity: 0.3
+            min: 0
+            max: max(params.a*params.m/params.p11,params.a*calcs.c/params.p12)
+
+        # Difference between CV and DeltaCS when price increases
+        - Area:
+            fn1: min(params.p12,((params.a*params.m)/((x)*((params.p11)^params.a)))^(1/(1-params.a)))
+            fn2: min((params.a*params.m)/(x),params.p12)
+            fill: Purple
+            opacity: 0.3
+            min: 0
+            max: max(params.a*params.m/params.p11,params.a*calcs.c/params.p12)
+
+        # Positive variation in CS when price decreases
+        - Area:
+            fn1: min(params.p11,((params.a*params.m)/((x)*((params.p11)^params.a)))^(1/(1-params.a)))
+            fn2: min(params.p11,params.p12)
+            fill: Green
+            min: 0
+            max: max(params.a*params.m/params.p11,params.a*calcs.c/params.p12)
+
 
     sidebar:
       controls:
@@ -104,7 +201,9 @@ layout:
         sliders:
         - param: a
           label: \alpha
-        - param: p
+        - param: p11
           label: p_1
+        - param: p12
+          label: p'_1
         divs:
           - html: $N$ consumers with demand $$x(P)=\frac{\alpha M}{P_X}$$
