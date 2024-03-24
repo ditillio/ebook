@@ -30,7 +30,7 @@ parts:
         title:
           en: Supply - The Monopolistic Firm
           it: Offerta - L'impresa monopolistica
-          sections:
+        sections:
           - title:
               en: Title of Section 2.1
               it: Titolo di Sezione 2.1
