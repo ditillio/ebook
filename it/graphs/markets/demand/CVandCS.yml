@@ -99,19 +99,21 @@ layout:
         - Point:
             coordinates: [params.a*params.m/params.p11,(1-params.a)*params.m]
             droplines:
-              vertical:
+              vertical: math.round((params.a)*(params.m)/(params.p11), 1)
+            color: Blue
 
         # New optimum
         - Point:
             coordinates: [params.a*params.m/params.p12,(1-params.a)*params.m]
             droplines:
-              vertical: 
+              vertical: math.round((params.a)*(params.m)/(params.p12), 1)
 
         # Compensated optimum
         - Point:
             coordinates: [params.a*calcs.c/params.p12,(1-params.a)*calcs.c]
             droplines:
-              vertical: 
+              vertical: math.round((params.a)*(calcs.c)/(params.p12), 1)
+            color: Purple
 
     bottomGraph:
       yAxis:
@@ -134,6 +136,7 @@ layout:
               position: bl
               bgcolor: none
             strokeWidth: 1.7
+            max: 
 
         # Hicksian demand function
         - Curve:
@@ -141,7 +144,7 @@ layout:
             color: Purple
             label:
               text: x^c_1
-              x: 25
+              x: 28
               position: bl
               bgcolor: none
             strokeWidth: 1.7
@@ -150,22 +153,24 @@ layout:
         - Point:
             coordinates: [params.a*params.m/params.p11,params.p11]
             droplines:
-              vertical: 
-              horizontal: params.p11
+              vertical: math.round((params.a)*(params.m)/(params.p11), 1)
+              horizontal: math.round(params.p11, 1)
+            color: Blue
 
         # New optimum
         - Point:
             coordinates: [params.a*params.m/params.p12,params.p12]
             droplines:
-              vertical: 
-              horizontal: params.p12
+              vertical: math.round((params.a)*(params.m)/(params.p12), 1)
+              horizontal: math.round(params.p12, 1)
 
         # Compensated optimum
         - Point:
             coordinates: [params.a*calcs.c/params.p12,params.p12]
             droplines:
-              vertical: 
+              vertical: math.round((params.a)*(calcs.c)/(params.p12), 1)
               horizontal:
+            color: Purple
 
         # Negative variation in CS when price increases
         - Area:
