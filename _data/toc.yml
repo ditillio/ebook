@@ -11,18 +11,21 @@ parts:
     chapters:
       - folder: 1
         title:
-          en: Demand - Consumer theory
-          it: Domanda - Teoria del consumatore
+          en: Consumer theory
+          it: Teoria del consumatore
         sections:
           - title:
               en: Title of Section 1.1
-              it: Titolo di Sezione 1.1
+              it: Domanda e benessere - Parte I
           - title:
               en: Title of Section 1.2
-              it: Titolo di Sezione 1.2  
+              it: Scelta ottima del consumatore  
           - title:
               en: Title of Section 1.3
-              it: Titolo di Sezione 1.3  
+              it: Minimizzazione della spesa
+          - title:
+              en: Title of Section 1.4
+              it: Domanda e benessere - Parte II
       - folder: 2
         title:
           en: Supply - The Monopolistic Firm
@@ -34,6 +37,12 @@ parts:
           - title:
               en: Title of Section 2.2
               it: Titolo di Sezione 2.2  
+          - title:
+              en: Title of Section 2.3
+              it: Titolo di Sezione 2.3
+          - title:
+              en: Title of Section 2.4
+              it: Titolo di Sezione 2.4  
       - folder: 3
         title:
           en: Competition
