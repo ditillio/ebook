@@ -221,7 +221,7 @@ layout:
         description:
         sliders:
         - param: a
-          label: \alpha
+          label: \alpha_1
         - param: p11
           label: P_1
         - param: p12
