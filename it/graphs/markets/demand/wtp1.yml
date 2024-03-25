@@ -1,0 +1,38 @@
+layout:
+  OneGraphPlusSidebar:
+    graph: 
+      xAxis:
+        title: Unità del bene
+        max: 5
+      yAxis:
+        title: Euro
+        max: 10
+        ticks: 10
+
+      objects:
+
+        - Point:
+            coordinates: [1,8]
+            droplines:
+              vertical:
+              horizontal:
+            color: Blue
+
+        - Point:
+            coordinates: [2,5]
+            droplines:
+              vertical:
+              horizontal:
+            color: Blue
+
+        - Point:
+            coordinates: [3,3]
+            droplines:
+              vertical:
+              horizontal:
+            color: Blue
+
+    sidebar:
+      controls:
+      - title: Graph Title
+        description: This is a description.
