@@ -1,6 +1,7 @@
 params:
+- {name: showCS, value: false}
 - {name: d, value: 0}
-- {name: p, value: 10, min: 1, max: 22, round: 0.1}
+- {name: p, value: 4.5, min: 0, max: 35, round: 0.1}
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: b111, value: 34}
@@ -8,12 +9,12 @@ params:
 - {name: b121, value: 14}
 - {name: b122, value: 10}
 - {name: b211, value: 7.5}
-- {name: b212, value: 5.9}
+- {name: b212, value: 6}
 - {name: b221, value: 4.5}
 - {name: b222, value: 3.2}
 - {name: b311, value: 2}
 - {name: b312, value: 1}
-- {name: b321, value: 0.5}
+- {name: b321, value: 0}
 - {name: b322, value: 0}
 
 calcs:
@@ -37,7 +38,7 @@ layout:
         max: 5
       yAxis:
         title: Euro
-        max: params.b111
+        max: (params.b111)+1
         ticks: 10
 
       objects:
@@ -109,6 +110,9 @@ layout:
         - Point: {coordinates: [3,params.b322], color: Blue, droplines: {horizontal: params.b322, vertical: }, show: params.d == 2}
 
 
+        - Area: {fn1: calcs.b1, fn2: params.p, fill: Blue, opacity: 0.1, min: 0, max: 1, show: params.p < calcs.b1 && params.d == 0 && params.showCS == true}
+        - Area: {fn1: calcs.b2, fn2: params.p, fill: Blue, opacity: 0.1, min: 1, max: 2, show: params.p < calcs.b2 && params.d == 0 && params.showCS == true}
+        - Area: {fn1: calcs.b3, fn2: params.p, fill: Blue, opacity: 0.1, min: 2, max: 3, show: params.p < calcs.b3 && params.d == 0 && params.showCS == true}
 
 
 
@@ -126,6 +130,10 @@ layout:
             - $d=0$
             - $d=2$
             - $d=4$
+        checkboxes:
+        - param: showCS
+          label: "\\text{Mostra il surplus del consumatore}"
+
 
     explanation:
       divs:
