@@ -151,9 +151,9 @@ layout:
         radioGroup:
           param: d
           options:
-            - $d=0$
-            - $d=2$
-            - $d=4$
+            - Bene venduto in multipli di $1$
+            - Bene venduto in multipli di $0.5$
+            - Bene venduto in multipli di $0.25$
         checkboxes:
         - param: showCS
           label: "\\text{Mostra il surplus del consumatore}"
