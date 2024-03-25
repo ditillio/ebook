@@ -1,21 +1,24 @@
 params:
 - {name: showCS, value: false}
 - {name: d, value: 0}
-- {name: p, value: 4.5, min: 0, max: 35, round: 0.1}
+- {name: p, value: 10, min: 0, max: 35, round: 0.5}
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
-- {name: b111, value: 34}
+- {name: ops, value: 0.2}
+- {name: b111, value: 32}
 - {name: b112, value: 20}
-- {name: b121, value: 14}
-- {name: b122, value: 10}
-- {name: b211, value: 7.5}
-- {name: b212, value: 6}
-- {name: b221, value: 4.5}
-- {name: b222, value: 3.2}
-- {name: b311, value: 2}
+- {name: b121, value: 12}
+- {name: b122, value: 8}
+
+- {name: b211, value: 5}
+- {name: b212, value: 4}
+- {name: b221, value: 3}
+- {name: b222, value: 2}
+
+- {name: b311, value: 1}
 - {name: b312, value: 1}
-- {name: b321, value: 0}
-- {name: b322, value: 0}
+- {name: b321, value: 1}
+- {name: b322, value: 1}
 
 calcs:
   b11: ((params.b111)+(params.b112))/2
@@ -35,13 +38,16 @@ layout:
     graph: 
       xAxis:
         title: Unità del bene
-        max: 5
+        max: 4
       yAxis:
         title: Euro
         max: (params.b111)+1
         ticks: 10
 
       objects:
+
+# price line
+        - Line: {point: [0,params.p], slope: 0, color: Green, strokeWidth: 1, label: {text: "P", x: 3.8, position: b}}
 
 # WTP for whole units
         - Point: {coordinates: [1,calcs.b1], color: Blue, droplines: {horizontal: calcs.b1, vertical: }, show: params.d == 0}
@@ -110,12 +116,30 @@ layout:
         - Point: {coordinates: [3,params.b322], color: Blue, droplines: {horizontal: params.b322, vertical: }, show: params.d == 2}
 
 
-        - Area: {fn1: calcs.b1, fn2: params.p, fill: Blue, opacity: 0.1, min: 0, max: 1, show: params.p < calcs.b1 && params.d == 0 && params.showCS == true}
-        - Area: {fn1: calcs.b2, fn2: params.p, fill: Blue, opacity: 0.1, min: 1, max: 2, show: params.p < calcs.b2 && params.d == 0 && params.showCS == true}
-        - Area: {fn1: calcs.b3, fn2: params.p, fill: Blue, opacity: 0.1, min: 2, max: 3, show: params.p < calcs.b3 && params.d == 0 && params.showCS == true}
+# consumer surplus
+        - Area: {fn1: calcs.b1, fn2: params.p, fill: Blue, opacity: params.ops, min: 0, max: 1, show: params.p < calcs.b1 && params.d == 0 && params.showCS == true}
+        - Area: {fn1: calcs.b2, fn2: params.p, fill: Blue, opacity: params.ops, min: 1, max: 2, show: params.p < calcs.b2 && params.d == 0 && params.showCS == true}
+        - Area: {fn1: calcs.b3, fn2: params.p, fill: Blue, opacity: params.ops, min: 2, max: 3, show: params.p < calcs.b3 && params.d == 0 && params.showCS == true}
 
+        - Area: {fn1: calcs.b11, fn2: params.p, fill: Blue, opacity: params.ops, min: 0, max: 0.5, show: params.p < calcs.b11 && params.d == 1 && params.showCS == true}
+        - Area: {fn1: calcs.b12, fn2: params.p, fill: Blue, opacity: params.ops, min: 0.5, max: 1, show: params.p < calcs.b12 && params.d == 1 && params.showCS == true}
+        - Area: {fn1: calcs.b21, fn2: params.p, fill: Blue, opacity: params.ops, min: 1, max: 1.5, show: params.p < calcs.b21 && params.d == 1 && params.showCS == true}
+        - Area: {fn1: calcs.b22, fn2: params.p, fill: Blue, opacity: params.ops, min: 1.5, max: 2, show: params.p < calcs.b22 && params.d == 1 && params.showCS == true}
+        - Area: {fn1: calcs.b31, fn2: params.p, fill: Blue, opacity: params.ops, min: 2, max: 2.5, show: params.p < calcs.b31 && params.d == 1 && params.showCS == true}
+        - Area: {fn1: calcs.b32, fn2: params.p, fill: Blue, opacity: params.ops, min: 2.5, max: 3, show: params.p < calcs.b32 && params.d == 1 && params.showCS == true}
 
-
+        - Area: {fn1: params.b111, fn2: params.p, fill: Blue, opacity: params.ops, min: 0, max: 0.25, show: params.p < params.b111 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b112, fn2: params.p, fill: Blue, opacity: params.ops, min: 0.25, max: 0.5, show: params.p < params.b112 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b121, fn2: params.p, fill: Blue, opacity: params.ops, min: 0.5, max: 0.75, show: params.p < params.b121 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b122, fn2: params.p, fill: Blue, opacity: params.ops, min: 0.75, max: 1, show: params.p < params.b122 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b211, fn2: params.p, fill: Blue, opacity: params.ops, min: 1, max: 1.25, show: params.p < params.b211 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b212, fn2: params.p, fill: Blue, opacity: params.ops, min: 1.25, max: 1.5, show: params.p < params.b212 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b221, fn2: params.p, fill: Blue, opacity: params.ops, min: 1.5, max: 1.75, show: params.p < params.b221 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b222, fn2: params.p, fill: Blue, opacity: params.ops, min: 1.75, max: 2, show: params.p < params.b222 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b311, fn2: params.p, fill: Blue, opacity: params.ops, min: 2, max: 2.25, show: params.p < params.b311 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b312, fn2: params.p, fill: Blue, opacity: params.ops, min: 2.25, max: 2.5, show: params.p < params.b312 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b321, fn2: params.p, fill: Blue, opacity: params.ops, min: 2.5, max: 2.75, show: params.p < params.b321 && params.d == 2 && params.showCS == true}
+        - Area: {fn1: params.b322, fn2: params.p, fill: Blue, opacity: params.ops, min: 2.75, max: 3, show: params.p < params.b322 && params.d == 2 && params.showCS == true}
 
     sidebar:
       controls:
