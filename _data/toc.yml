@@ -28,25 +28,22 @@ parts:
               it: Domanda e benessere - Parte II
       - folder: 2
         title:
-          en: Supply - The Monopolistic Firm
-          it: Offerta - L'impresa monopolistica
+          en: Theory of the Firm
+          it: Teoria dell'impresa
         sections:
           - title:
               en: Title of Section 2.1
-              it: Titolo di Sezione 2.1
+              it: Costi
           - title:
               en: Title of Section 2.2
-              it: Titolo di Sezione 2.2  
+              it: Massimizzazione del profitto  
           - title:
               en: Title of Section 2.3
-              it: Titolo di Sezione 2.3
-          - title:
-              en: Title of Section 2.4
-              it: Titolo di Sezione 2.4  
+              it: Discriminazione di prezzo
       - folder: 3
         title:
-          en: Competition
-          it: Concorrenza
+          en: Competition and market equilibrium
+          it: Concorrenza ed equilibrio di mercato
   - title:
       en: Information
       it: Informazione

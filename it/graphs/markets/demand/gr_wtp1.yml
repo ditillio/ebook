@@ -38,7 +38,7 @@ calcs:
     max((params.b221)-(params.p),0)+max((params.b222)-(params.p),0)+max((params.b311)-(params.p),0)+
     max((params.b312)-(params.p),0)+max((params.b321)-(params.p),0)+max((params.b322)-(params.p),0))/4
 
-aspectRatio: 1
+aspectRatio: 1.5
 
 layout:
   OneGraphPlusSidebar:
@@ -54,7 +54,16 @@ layout:
       objects:
 
 # price line
-        - Line: {point: [0,params.p], slope: 0, color: Green, strokeWidth: 1, label: {text: "P", x: 3.4, position: b}}
+        - Line:
+            yIntercept: params.p
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: P
+              x: 3.4
+              position: b
+            drag:
+              - vertical: p
 
 # WTP for whole units
         - Point: {coordinates: [1,calcs.b1], color: Blue, droplines: {horizontal: calcs.b1, vertical: }, show: params.d == 0}
@@ -175,8 +184,7 @@ layout:
 
     explanation:
       divs:
-        - html: "`When $P = ${params.p11.toFixed(1)}$, $CS = ${calcs.cs0}$ the consumer sets $MB= P$ at $Q = ${calcs.c.toFixed(1)}$ and the firm sets $P = MC$ at $Q = ${calcs.c.toFixed(1)}$.`"
-        - html: "`If we assume the total amount produced and consumed must be the smaller of those two, then the amount in the market is $Q = ${calcs.c.toFixed(2)}$. At that quantity, $MB > MC$, so total surplus could be increased if $Q$ were higher.`"
-          show: params.p11 != 1
+        - html: "`Quando $ P = ${params.p.toFixed(1)} $ il consumatore acquista 1 unità `"
+          show: (calcs.b2 < params.p) && (params.p < calcs.b1) 
         - html: Since the amount the firm makes is the amount the consumer wants to consume, the market would be in competitive equilibrium. If you move the price up and down, you can see that the total surplus at the equilibrium price is higher than at any other price.
-          show: params.p11 == 1
+          show: params.p == 1

@@ -73,7 +73,7 @@ layout:
               text:
               x: 33
               position: tl
-            strokeWidth: 1.6
+            strokeWidth: 1.5
 
         # New budget line
         - Line:
@@ -84,7 +84,7 @@ layout:
               text:
               x: 33
               position: tl
-            strokeWidth: 1.6
+            strokeWidth: 1.5
 
         # Compensated budget line
         - Line:
@@ -95,7 +95,7 @@ layout:
               text:
               x: 33
               position: tl
-            strokeWidth: 0.8
+            strokeWidth: 0.75
 
         # Original optimum
         - Point:
@@ -141,7 +141,7 @@ layout:
               x: 28
               position: bl
               bgcolor: none
-            strokeWidth: 1.7
+            strokeWidth: 1.5
             max: 
 
         # Hicksian demand function
@@ -153,7 +153,7 @@ layout:
               x: (params.a)*(params.m * ((3/params.p11)^(params.a)))/3
               position: tl
               bgcolor: none
-            strokeWidth: 1.7
+            strokeWidth: 1.5
 
         # Original optimum
         - Point:
