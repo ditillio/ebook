@@ -28,7 +28,7 @@ params:
 calcs:
   c: params.m * ((params.p12/params.p11)^(params.a))
   p: params.p12/params.p11
-#aspectRatio: 1
+aspectRatio: 0.8
 
 layout:
   TwoVerticalGraphsPlusSidebar:

@@ -30,6 +30,10 @@ calcs:
   b1: ((params.b111)+(params.b112)+(params.b121)+(params.b122))/4
   b2: ((params.b211)+(params.b212)+(params.b221)+(params.b222))/4
   b3: ((params.b311)+(params.b312)+(params.b321)+(params.b322))/4
+  cs0: max((calcs.b1)-(params.p),0)+max((calcs.b2)-(params.p),0)+max((calcs.b3)-(params.p),0)
+  cs1: (max((calcs.b11)-(params.p),0)+max((calcs.b12)-(params.p),0)+max((calcs.b21)-(params.p),0)
+        +max((calcs.b22)-(params.p),0)+max((calcs.b31)-(params.p),0)+max((calcs.b32)-(params.p),0))/2
+  cs2: (max((params.b111)-(params.p),0)+max((params.b112)-(params.p),0)+max((params.b121)-(params.p),0)+max((params.b122)-(params.p),0)+max((params.b211)-(params.p),0)+max((params.b212)-(params.p),0)+max((params.b121)-(params.p),0)+max((params.b122)-(params.p),0)+max((params.b311)-(params.p),0)+max((params.b312)-(params.p),0)+max((params.b321)-(params.p),0)+max((params.b322)-(params.p),0))/4
 
 aspectRatio: 1
 
@@ -51,7 +55,7 @@ layout:
 
 # WTP for whole units
         - Point: {coordinates: [1,calcs.b1], color: Blue, droplines: {horizontal: calcs.b1, vertical: }, show: params.d == 0}
-        - Point: {coordinates: [2,calcs.b2], color: Blue, droplines: {horizontal: calcs.b2, vertical: }, show: params.d == 0}
+        - Point: {coordinates: [2,calcs.b2], color: Blue, droplines: {horizontal: calcs.cs1, vertical: }, show: params.d == 0}
         - Point: {coordinates: [3,calcs.b3], color: Blue, droplines: {horizontal: calcs.b3, vertical: }, show: params.d == 0}
 
         - Point: {coordinates: [1,calcs.b1], color: Blue, show: params.d == 1, opacity: params.op1}
@@ -156,12 +160,19 @@ layout:
             - Bene venduto in multipli di $0.25$
         checkboxes:
         - param: showCS
-          label: "\\text{Mostra il surplus del consumatore}"
-
+          label: "\\text{Mostra e calcola il surplus del consumatore}"
+        divs:
+        - html: "`  `"
+        - html: "`Il surplus del consumatore (area azzurra) è pari a $$ \\\\text{CS} = ${calcs.cs0.toFixed(1)} $$`"
+          show: (params.d == 0 && params.showCS == true)
+        - html: "`Il surplus del consumatore (area azzurra) è pari a $$ \\\\text{CS} = ${calcs.cs1.toFixed(1)} $$`"
+          show: (params.d == 1 && params.showCS == true)
+        - html: "`Il surplus del consumatore (area azzurra) è pari a $$ \\\\text{CS} = ${calcs.cs2.toFixed(1)} $$`"
+          show: (params.d == 2 && params.showCS == true)
 
     explanation:
       divs:
-        - html: "`When $P = ${params.p11.toFixed(1)}$, the consumer sets $MB= P$ at $Q = ${calcs.c.toFixed(1)}$ and the firm sets $P = MC$ at $Q = ${calcs.c.toFixed(1)}$.`"
+        - html: "`When $P = ${params.p11.toFixed(1)}$, $CS = ${calcs.cs0}$ the consumer sets $MB= P$ at $Q = ${calcs.c.toFixed(1)}$ and the firm sets $P = MC$ at $Q = ${calcs.c.toFixed(1)}$.`"
         - html: "`If we assume the total amount produced and consumed must be the smaller of those two, then the amount in the market is $Q = ${calcs.c.toFixed(2)}$. At that quantity, $MB > MC$, so total surplus could be increased if $Q$ were higher.`"
           show: params.p11 != 1
         - html: Since the amount the firm makes is the amount the consumer wants to consume, the market would be in competitive equilibrium. If you move the price up and down, you can see that the total surplus at the equilibrium price is higher than at any other price.
