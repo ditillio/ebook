@@ -33,7 +33,10 @@ calcs:
   cs0: max((calcs.b1)-(params.p),0)+max((calcs.b2)-(params.p),0)+max((calcs.b3)-(params.p),0)
   cs1: (max((calcs.b11)-(params.p),0)+max((calcs.b12)-(params.p),0)+max((calcs.b21)-(params.p),0)
         +max((calcs.b22)-(params.p),0)+max((calcs.b31)-(params.p),0)+max((calcs.b32)-(params.p),0))/2
-  cs2: (max((params.b111)-(params.p),0)+max((params.b112)-(params.p),0)+max((params.b121)-(params.p),0)+max((params.b122)-(params.p),0)+max((params.b211)-(params.p),0)+max((params.b212)-(params.p),0)+max((params.b121)-(params.p),0)+max((params.b122)-(params.p),0)+max((params.b311)-(params.p),0)+max((params.b312)-(params.p),0)+max((params.b321)-(params.p),0)+max((params.b322)-(params.p),0))/4
+  cs2: (max((params.b111)-(params.p),0)+max((params.b112)-(params.p),0)+max((params.b121)-(params.p),0)+
+    max((params.b122)-(params.p),0)+max((params.b211)-(params.p),0)+max((params.b212)-(params.p),0)+
+    max((params.b221)-(params.p),0)+max((params.b222)-(params.p),0)+max((params.b311)-(params.p),0)+
+    max((params.b312)-(params.p),0)+max((params.b321)-(params.p),0)+max((params.b322)-(params.p),0))/4
 
 aspectRatio: 1
 
@@ -55,7 +58,7 @@ layout:
 
 # WTP for whole units
         - Point: {coordinates: [1,calcs.b1], color: Blue, droplines: {horizontal: calcs.b1, vertical: }, show: params.d == 0}
-        - Point: {coordinates: [2,calcs.b2], color: Blue, droplines: {horizontal: calcs.cs1, vertical: }, show: params.d == 0}
+        - Point: {coordinates: [2,calcs.b2], color: Blue, droplines: {horizontal: calcs.b2, vertical: }, show: params.d == 0}
         - Point: {coordinates: [3,calcs.b3], color: Blue, droplines: {horizontal: calcs.b3, vertical: }, show: params.d == 0}
 
         - Point: {coordinates: [1,calcs.b1], color: Blue, show: params.d == 1, opacity: params.op1}
