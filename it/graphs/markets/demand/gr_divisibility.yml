@@ -46,6 +46,7 @@ layout:
       xAxis:
         title: Unità del bene
         max: 3.5
+        ticks: 10
       yAxis:
         title: Euro
         max: (params.b111)+1
