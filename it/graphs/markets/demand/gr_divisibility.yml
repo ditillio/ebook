@@ -38,7 +38,7 @@ calcs:
     max((params.b221)-(params.p),0)+max((params.b222)-(params.p),0)+max((params.b311)-(params.p),0)+
     max((params.b312)-(params.p),0)+max((params.b321)-(params.p),0)+max((params.b322)-(params.p),0))/4
 
-aspectRatio: 1
+aspectRatio: 1.3
 
 layout:
   OneGraphPlusSidebar:

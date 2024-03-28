@@ -12,12 +12,12 @@ params:
     round: 0.05
   - name: p11
     value: 1
-    min: 0.4
+    min: 0.5
     max: 3
     round: 0.1
   - name: p12
     value: 2
-    min: 0.3
+    min: 0.5
     max: 3
     round: 0.1
   - name: p2
@@ -28,6 +28,9 @@ params:
 calcs:
   c: params.m * ((params.p12/params.p11)^(params.a))
   p: params.p12/params.p11
+  oldopt:
+  newopt:
+  compopt:
 aspectRatio: 0.8
 
 layout:
@@ -35,15 +38,15 @@ layout:
 
     topGraph:
       yAxis:
-        title: Unità di Bene 2
+        title: Bene 2
         max: 15
         min: 0
-        ticks: 0
+        ticks: 3
       xAxis:
-        title: Unità di Bene 1
+        title: Bene 1
         max: 32
         min: 0
-        ticks: 0
+        ticks: 5
       objects:
 
         # Original indifference curve
@@ -127,7 +130,7 @@ layout:
         max: 3.2
         ticks: 0
       xAxis:
-        title: Unità di Bene 1
+        title: Bene 1
         max: 32
         ticks: 0
       objects:
@@ -221,19 +224,25 @@ layout:
         description:
         sliders:
         - param: a
-          label: \alpha_1
+          label: \alpha
         - param: p11
           label: P_1
         - param: p12
           label: P'_1
         divs:
-          - html: $N$ consumers with demand $$x(P)=\frac{\alpha M}{P_X}$$
-            show: params.p11 == 1
+          - html: "`Quando il prezzo del bene 1 aumenta da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$,
+            la scelta ottima del consumatore cambia dal punto blu di destra (dove $x_1 = ${math.round(params.a*params.m/params.p11,1)}$
+            e $x_2 = ${(1-(params.a))*(params.m)/(params.p2)}$) al punto blu di sinistra (dove $x_1 = ${math.round(params.a*params.m/params.p12,1)}$ 
+            e $x_2 = ${(1-(params.a))*(params.m)/(params.p2)}$).  `"
+            show: params.p11 < params.p12
+
+
+
 
     explanation:
       divs:
-        - html: "`When $P = ${params.p11.toFixed(1)}$, the consumer sets $MB= P$ at $Q = ${calcs.c.toFixed(1)}$ and the firm sets $P = MC$ at $Q = ${calcs.c.toFixed(1)}$.`"
-        - html: "`If we assume the total amount produced and consumed must be the smaller of those two, then the amount in the market is $Q = ${calcs.c.toFixed(2)}$. At that quantity, $MB > MC$, so total surplus could be increased if $Q$ were higher.`"
-          show: params.p11 != 1
+        - html: "`Quando il prezzo del bene aumenta da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$,
+        il ... `"
+          show: params.p11 < params.p12
         - html: Since the amount the firm makes is the amount the consumer wants to consume, the market would be in competitive equilibrium. If you move the price up and down, you can see that the total surplus at the equilibrium price is higher than at any other price.
           show: params.p11 == 1
