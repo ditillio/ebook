@@ -15,9 +15,6 @@ parts:
           it: Teoria del consumatore
         sections:
           - title:
-              en: Title of Section 1.0
-              it: Mate
-          - title:
               en: Title of Section 1.1
               it: Domanda e benessere - Parte I
           - title:
@@ -29,6 +26,9 @@ parts:
           - title:
               en: Title of Section 1.4
               it: Domanda e benessere - Parte II
+          - title:
+              en: Sandbox
+              it: Sandbox
       - folder: 2
         title:
           en: Theory of the Firm

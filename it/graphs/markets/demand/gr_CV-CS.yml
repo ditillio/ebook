@@ -28,10 +28,8 @@ params:
 calcs:
   c: params.m * ((params.p12/params.p11)^(params.a))
   p: params.p12/params.p11
-  oldopt:
-  newopt:
-  compopt:
-aspectRatio: 0.8
+  dcs: math.round(2.13, 1)
+aspectRatio: 1.2
 
 layout:
   TwoVerticalGraphsPlusSidebar:
@@ -140,7 +138,7 @@ layout:
             fn: params.a * params.m / (x)
             color: Blue
             label:
-              text: \large x_1
+              text: "`X_1`"
               x: 28
               position: bl
               bgcolor: none
@@ -152,7 +150,7 @@ layout:
             fn: (( params.a * params.m ) / ( (x) * ((params.p11)^params.a) ))^(1/(1-params.a))
             color: Purple
             label:
-              text: \large x^c_1
+              text: X^C_1
               x: (params.a)*(params.m * ((3/params.p11)^(params.a)))/3
               position: tl
               bgcolor: none
@@ -220,7 +218,7 @@ layout:
 
     sidebar:
       controls:
-      - title: From individual ITA demand to market demand
+      - title: Figura 1.4.1
         description:
         sliders:
         - param: a
@@ -230,19 +228,41 @@ layout:
         - param: p12
           label: P'_1
         divs:
-          - html: "`Quando il prezzo del bene 1 aumenta da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$,
-            la scelta ottima del consumatore cambia dal punto blu di destra (dove $x_1 = ${math.round(params.a*params.m/params.p11,1)}$
-            e $x_2 = ${(1-(params.a))*(params.m)/(params.p2)}$) al punto blu di sinistra (dove $x_1 = ${math.round(params.a*params.m/params.p12,1)}$ 
-            e $x_2 = ${(1-(params.a))*(params.m)/(params.p2)}$).  `"
+          - html: "`Quando il prezzo del bene 1 aumenta da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$, per acquistare il paniere rappresentato dal 
+            punto viola è necessario un reddito pari a $M'=${calcs.c.toFixed(1)}$ . La variazione compensativa è quindi
+            $$ CV = M - M' = ${(params.m)} - ${calcs.c.toFixed(1)} = ${math.round((params.m) - (calcs.c),1)}, $$ pari al negativo 
+            della somma delle aree rossa e viola, ovvero il negativo dell'area sotto la 
+            curva di domanda compensata $X^C_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$.  `"
             show: params.p11 < params.p12
+          - html: "`La variazione di surplus del consumatore, invece, è il negativo dell'area rossa, ovvero il negativo dell'area sotto la 
+            curva di domanda $X_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$, e risulta essere pari a
+            $$ \\\\Delta CS = ${math.round((params.a) * (params.m) * math.log( (params.p11)/(params.p12) ),1)}. $$  `"
+            show: params.p11 < params.p12
+          - html: "`Quando il prezzo del bene 1 diminuisce da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$, per acquistare il paniere rappresentato dal 
+            punto viola è necessario un reddito pari a $M'=${calcs.c.toFixed(1)}$ . La variazione compensativa è quindi
+            $$ CV = M - M' = ${(params.m)} - ${calcs.c.toFixed(1)} = ${math.round((params.m) - (calcs.c),1)}, $$ pari 
+            all'area verde, ovvero l'area sotto la 
+            curva di domanda compensata $X^C_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$.  `"
+            show: params.p11 > params.p12
+          - html: "`La variazione di surplus del consumatore, invece, è pari alla somma delle aree verde e azzurra, ovvero l'area sotto la 
+            curva di domanda $X_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$, e risulta essere pari a
+            $$ \\\\Delta CS = ${math.round((params.a) * (params.m) * math.log( (params.p11)/(params.p12) ),1)}. $$  `"
+            show: params.p11 > params.p12
 
 
 
 
     explanation:
       divs:
-        - html: "`Quando il prezzo del bene aumenta da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$,
-        il ... `"
+        - html: "`Quando il prezzo del bene 1 aumenta da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$, la variazione di surplus del consumatore
+            $ \\\\Delta CS = ${math.round((params.a) * (params.m) * math.log( (params.p11)/(params.p12) ),1)}$ è, in valore assoluto,
+            minore della variazione compensativa $ CV = ${math.round((params.m) - (calcs.c),1)}$. Quindi la variazione di surplus del consumatore
+             <strong>sottovaluta</strong> la perdita di benessere del consumatore. Tuttavia la discrepanza tra $\\\\Delta CS$ e $CV$ è tanto più
+            piccola quanto più è piccolo $a_1$ rispetto ad $a_2$ ovvero quanto più piccolo è $\\\\alpha = a_1/(a_1+a_2)$. `"
           show: params.p11 < params.p12
-        - html: Since the amount the firm makes is the amount the consumer wants to consume, the market would be in competitive equilibrium. If you move the price up and down, you can see that the total surplus at the equilibrium price is higher than at any other price.
-          show: params.p11 == 1
+        - html: "`Quando il prezzo del bene 1 diminuisce da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$, la variazione di surplus del consumatore
+            $ \\\\Delta CS = ${math.round((params.a) * (params.m) * math.log( (params.p11)/(params.p12) ),1)}$ è
+            maggiore della variazione compensativa $ CV = ${math.round((params.m) - (calcs.c),1)}$. Quindi la variazione di surplus del consumatore
+             <strong>sopravvaluta</strong> il guadagno di benessere del consumatore. Tuttavia la discrepanza tra $\\\\Delta CS$ e $CV$ è tanto più
+            piccola quanto più è piccolo $a_1$ rispetto ad $a_2$ ovvero quanto più piccolo è $\\\\alpha = a_1/(a_1+a_2)$. `"
+          show: params.p11 > params.p12
