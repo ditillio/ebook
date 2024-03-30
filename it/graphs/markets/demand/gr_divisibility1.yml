@@ -160,8 +160,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Graph Title
-        description: This is a description.
+      - title: Divisibilità dei beni
         sliders:
         - param: p
           label: P

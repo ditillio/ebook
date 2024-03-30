@@ -218,8 +218,8 @@ layout:
 
     sidebar:
       controls:
-      - title: Figura 1.4.1
-        description:
+      - title: Titolo
+        description: Descrizione
         sliders:
         - param: a
           label: \alpha
