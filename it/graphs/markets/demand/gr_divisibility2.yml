@@ -37,7 +37,7 @@ layout:
 # price line
       - Line:
           yIntercept: params.p
-          color: budget
+          color: Green
           label:
             text: P
             x: 10.5

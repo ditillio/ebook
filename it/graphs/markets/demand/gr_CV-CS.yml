@@ -125,7 +125,7 @@ layout:
     bottomGraph:
       yAxis:
         title: Euro
-        max: 3.2
+        max: 3.5
         ticks: 0
       xAxis:
         title: Bene 1
@@ -133,27 +133,46 @@ layout:
         ticks: 0
       objects:
 
+# price line  
+        - Line:
+            slope: 0
+            point: [0,params.p11]
+            color: Green
+            label:
+              text: P
+              x: 31
+            strokeWidth: 1.5
+            drag:
+              - vertical: p11
+
+# new price line  
+        - Line:
+            slope: 0
+            point: [0,params.p12]
+            color: Green
+            label:
+              text: P'
+              x: 29
+            strokeWidth: 1.5
+            drag:
+              - vertical: p12
+
         # Walrasian demand function
         - Curve:
             fn: params.a * params.m / (x)
             color: Blue
             label:
-              text: "`X_1`"
-              x: 28
-              position: bl
-              bgcolor: none
+              text: "`X^d_1`"
+              x: 3.1
             strokeWidth: 1.5
-            max: 
 
         # Hicksian demand function
         - Curve:
             fn: (( params.a * params.m ) / ( (x) * ((params.p11)^params.a) ))^(1/(1-params.a))
             color: Purple
             label:
-              text: X^C_1
-              x: (params.a)*(params.m * ((3/params.p11)^(params.a)))/3
-              position: tl
-              bgcolor: none
+              text: "`X^c_1`"
+              x: params.a*(params.m * ((3.25/params.p11)^(params.a)))/3.25
             strokeWidth: 1.5
 
         # Original optimum
@@ -232,20 +251,20 @@ layout:
             punto viola è necessario un reddito pari a $M'=${calcs.c.toFixed(1)}$ . La variazione compensativa è quindi
             $$ CV = M - M' = ${(params.m)} - ${calcs.c.toFixed(1)} = ${math.round((params.m) - (calcs.c),1)}, $$ pari al negativo 
             della somma delle aree rossa e viola, ovvero il negativo dell'area sotto la 
-            curva di domanda compensata $X^C_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$.  `"
+            curva di domanda compensata $X^c_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$.  `"
             show: params.p11 < params.p12
           - html: "`La variazione di surplus del consumatore, invece, è il negativo dell'area rossa, ovvero il negativo dell'area sotto la 
-            curva di domanda $X_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$, e risulta essere pari a
+            curva di domanda $X^d_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$, e risulta essere pari a
             $$ \\\\Delta CS = ${math.round((params.a) * (params.m) * math.log( (params.p11)/(params.p12) ),1)}. $$  `"
             show: params.p11 < params.p12
           - html: "`Quando il prezzo del bene 1 diminuisce da $P_1 = ${params.p11.toFixed(1)}$ a $P'_1 = ${params.p12.toFixed(1)}$, per acquistare il paniere rappresentato dal 
             punto viola è necessario un reddito pari a $M'=${calcs.c.toFixed(1)}$ . La variazione compensativa è quindi
             $$ CV = M - M' = ${(params.m)} - ${calcs.c.toFixed(1)} = ${math.round((params.m) - (calcs.c),1)}, $$ pari 
             all'area verde, ovvero l'area sotto la 
-            curva di domanda compensata $X^C_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$.  `"
+            curva di domanda compensata $X^c_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$.  `"
             show: params.p11 > params.p12
           - html: "`La variazione di surplus del consumatore, invece, è pari alla somma delle aree verde e azzurra, ovvero l'area sotto la 
-            curva di domanda $X_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$, e risulta essere pari a
+            curva di domanda $X^d_1$ e compresa tra $P_1 = ${params.p11.toFixed(1)}$ e $P'_1 = ${params.p12.toFixed(1)}$, e risulta essere pari a
             $$ \\\\Delta CS = ${math.round((params.a) * (params.m) * math.log( (params.p11)/(params.p12) ),1)}. $$  `"
             show: params.p11 > params.p12
 
