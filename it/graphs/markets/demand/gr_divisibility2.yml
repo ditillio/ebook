@@ -44,6 +44,7 @@ layout:
             position: bl
           drag:
             - vertical: p
+          strokeWidth: 1.5
 
 # optimum
       - Point:
@@ -97,7 +98,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Domanda di un bene perfettamente divisibile
+      - title: Domanda individuale e di mercato per un bene perfettamente divisibile
         checkboxes:
         - param: showCS
           label: "\\text{Mostra surplus del consumatore.}"

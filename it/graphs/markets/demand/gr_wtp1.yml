@@ -1,6 +1,6 @@
 params:
 - {name: showCS, value: false}
-- {name: p, value: 300, min: 0, max: 540, round: 10}
+- {name: p, value: 150, min: 0, max: 540, round: 10}
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
@@ -12,11 +12,53 @@ params:
 calcs:
   cs: max((params.b1)-(params.p),0)+max((params.b2)-(params.p),0)+max((params.b3)-(params.p),0)+max((params.b4)-(params.p),0)
 
-aspectRatio: 1.5
+aspectRatio: 1
 
 layout:
-  OneGraphPlusSidebar:
-    graph: 
+  TwoVerticalGraphsPlusSidebar:
+
+    topGraph: 
+      xAxis:
+        title: Unità del bene
+        max: 5.2
+        ticks: 4
+      yAxis:
+        title: Euro
+        max: 1000
+        ticks: 5
+
+      objects:
+
+# price line
+        - Line:
+            yIntercept: 0
+            slope: params.p
+            color: Green
+            strokeWidth: 0.75
+            drag:
+              - vertical: p
+
+        - Point: {coordinates: [0,0], color: Green}
+        - Point: {coordinates: [1, (params.p)], color: Green, droplines: {horizontal: (params.p), vertical: }}
+        - Point: {coordinates: [2, (2*params.p)], color: Green, droplines: {horizontal: (2*params.p), vertical: }}
+        - Point: {coordinates: [3, (3*params.p)], color: Green, droplines: {horizontal: (3*params.p), vertical: }}
+        - Point: {coordinates: [4, (4*params.p)], color: Green, droplines: {horizontal: (4*params.p), vertical: }}
+        - Point: {coordinates: [5, (5*params.p)], color: Green, droplines: {horizontal: (5*params.p), vertical: }}
+
+# total WTP for whole units
+        - Point: {coordinates: [1,params.b1], color: Blue, droplines: {horizontal: params.b1, vertical: }}
+        - Point: {coordinates: [2,params.b1+params.b2], color: Blue, droplines: {horizontal: params.b1+params.b2, vertical: }}
+        - Point: {coordinates: [3,params.b1+params.b2+params.b3], color: Blue, droplines: {horizontal: params.b1+params.b2+params.b3, vertical: }}
+        - Point: {coordinates: [4,params.b1+params.b2+params.b3+params.b4], color: Blue, droplines: {horizontal: , vertical: }}
+        - Point: {coordinates: [5,params.b1+params.b2+params.b3+params.b4], color: Blue, droplines: {horizontal: params.b1+params.b2+params.b3+params.b4, vertical: }}
+
+# consumer surplus
+        - Segment: {a: [1,params.b1], b: [1,(params.p)], color: Blue, show: params.p < params.b1 && params.p > params.b2, strokeWidth: 2}
+        - Segment: {a: [2,params.b1+params.b2], b: [2,(2*params.p)], color: Blue, show: params.p <= params.b2 && params.p > params.b3, strokeWidth: 2}
+        - Segment: {a: [3,params.b1+params.b2+params.b3], b: [3,(3*params.p)], color: Blue, show: params.p <= params.b3 && params.p > params.b4, strokeWidth: 2}
+        - Segment: {a: [4,params.b1+params.b2+params.b3+params.b4], b: [4,(4*params.p)], color: Blue, show: params.p <= params.b4, strokeWidth: 2}
+
+    bottomGraph: 
       xAxis:
         title: Unità del bene
         max: 5.2
@@ -45,6 +87,7 @@ layout:
         - Point: {coordinates: [2,params.b2], color: Blue, droplines: {horizontal: params.b2, vertical: }}
         - Point: {coordinates: [3,params.b3], color: Blue, droplines: {horizontal: params.b3, vertical: }}
         - Point: {coordinates: [4,params.b4], color: Blue, droplines: {horizontal: params.b4, vertical: }}
+        - Point: {coordinates: [5,0], color: Blue}
 
 # consumer surplus
         - Area: {fn1: params.b1, fn2: params.p, fill: Blue, opacity: params.ops, min: 0, max: 1, show: params.p < params.b1 }
@@ -54,8 +97,8 @@ layout:
 
     sidebar:
       controls:
-      - title: Surplus del consumatore
-        description: Spostare il cursore qui sotto (o muovere la retta orizzontale nel grafico) per vedere come varia il
+      - title: Beneficio totale, beneficio marginale, e surplus del consumatore
+        description: Spostare il cursore qui sotto (o muovere la retta orizzontale nel grafico di sotto) per vedere come varia il
                         surplus del consumatore al variare del prezzo del bene.
         sliders:
         - param: p
@@ -73,42 +116,43 @@ layout:
           show: (params.p == params.b1) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista una unità del bene, che per lui vale ${params.b1}. Non ne acquista di più perché 
         la seconda, terza, quarta, quinta, ... unità per lui valgono ${params.b2}, ${params.b3}, ${params.b4}, $0$ ..., cioè tutte meno di ${params.p}.
-        Il surplus del consumatore (area azzurra) è
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
         $$ CS = ${params.b1} - ${params.p} = ${calcs.cs} $$ `"
           show: (params.b2 < params.p) && (params.p < params.b1) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista due unità del bene (è in realtà indifferente tra acquistarne una o due, dato che la seconda 
         unità costa tanto quanto essa vale per lui). Non ne acquista più di due perché 
         la terza, quarta, quinta, ... unità per lui valgono ${params.b3}, ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
-        Il surplus del consumatore (area azzurra) è
-        $$ CS = ${params.b1}+${params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
+        $$ CS = ${params.b1+params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b2 == params.p) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista due unità del bene, che per lui valgono complessivamente 
         $ ${params.b1} + ${params.b2} = ${params.b1 + params.b2} $. Non ne acquista di più perché 
         la terza, quarta, quinta, ... unità per lui valgono ${params.b3}, ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
-        Il surplus del consumatore (area azzurra) è
-        $$ CS = ${params.b1}+${params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
+        $$ CS = ${params.b1+params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b3 < params.p) && (params.p < params.b2) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista tre unità del bene (è in realtà indifferente tra acquistarne due o tre, dato che la terza 
         unità costa tanto quanto essa vale per lui). Non ne acquista più di tre perché 
         la quarta, quinta, ... unità per lui valgono ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
-        Il surplus del consumatore (area azzurra) è
-        $$ CS = ${params.b1}+${params.b2}+${params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
+        $$ CS = ${params.b1+params.b2+params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b3 == params.p) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista tre unità del bene, che per lui valgono complessivamente 
         $ ${params.b1} + ${params.b2} + ${params.b3} = ${params.b1 + params.b2 + params.b3} $. Non ne acquista di più perché 
         la quarta, quinta, ... unità per lui valgono ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
-        Il surplus del consumatore (area azzurra) è
-        $$ CS = ${params.b1}+${params.b2}+${params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
+        $$ CS = ${params.b1+params.b2+params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b4 < params.p) && (params.p < params.b3) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista quattro unità del bene (è in realtà indifferente tra acquistarne tre o quattro,
          dato che la quarta 
         unità costa tanto quanto essa vale per lui). Non ne acquista più di quattro perché 
         la quinta, sesta, ... unità per lui valgono $0$, ..., cioè tutte meno di ${params.p}.
-        Il surplus del consumatore (area azzurra) è
-        $$ CS = ${params.b1}+${params.b2}+${params.b3}+${params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
+        $$ CS = ${params.b1+params.b2+params.b3+params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b4 == params.p) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista quattro unità del bene, che per lui valgono complessivamente 
         $ ${params.b1} + ${params.b2} + ${params.b3} + ${params.b4} = ${params.b1 + params.b2 + params.b3 + params.b4} $. Non ne acquista di più perché 
         la quinta, sesta, ... unità per lui valgono $0$, ..., cioè tutte meno di ${params.p}.
-        $$ CS = ${params.b1}+${params.b2}+${params.b3}+${params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
+        Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
+        $$ CS = ${params.b1+params.b2+params.b3+params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b4 > params.p) 
