@@ -98,7 +98,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Domanda individuale e di mercato per un bene perfettamente divisibile
+      - title: Domanda individuale e di mercato per un bene infinitamente divisibile
         checkboxes:
         - param: showCS
           label: "\\text{Mostra surplus del consumatore.}"

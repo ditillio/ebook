@@ -115,7 +115,7 @@ layout:
           strokeWidth: 1.5
           label:
             text: P
-            x: 1000
+            x: 780
             position: b
           drag:
             - vertical: p

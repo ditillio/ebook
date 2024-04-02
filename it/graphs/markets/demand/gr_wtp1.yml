@@ -38,7 +38,7 @@ layout:
             drag:
               - vertical: p
 
-        - Point: {coordinates: [0,0], color: Green}
+        - Point: {coordinates: [0.05,0], color: Green}
         - Point: {coordinates: [1, (params.p)], color: Green, droplines: {horizontal: (params.p), vertical: }}
         - Point: {coordinates: [2, (2*params.p)], color: Green, droplines: {horizontal: (2*params.p), vertical: }}
         - Point: {coordinates: [3, (3*params.p)], color: Green, droplines: {horizontal: (3*params.p), vertical: }}
@@ -46,6 +46,7 @@ layout:
         - Point: {coordinates: [5, (5*params.p)], color: Green, droplines: {horizontal: (5*params.p), vertical: }}
 
 # total WTP for whole units
+        - Point: {coordinates: [0,0], color: Blue}
         - Point: {coordinates: [1,params.b1], color: Blue, droplines: {horizontal: params.b1, vertical: }}
         - Point: {coordinates: [2,params.b1+params.b2], color: Blue, droplines: {horizontal: params.b1+params.b2, vertical: }}
         - Point: {coordinates: [3,params.b1+params.b2+params.b3], color: Blue, droplines: {horizontal: params.b1+params.b2+params.b3, vertical: }}
