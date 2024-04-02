@@ -109,6 +109,18 @@ layout:
 
         - Segment: {a: [calcs.dem,(12*(calcs.dem))-2*(calcs.dem)^2], b: [calcs.dem,(params.p*calcs.dem)], color: Blue, show: params.d == 2 && params.showCS == 1, strokeWidth: 5}
 
+# tangent
+        - Line:
+            point: [calcs.dem,(12*(calcs.dem))-2*(calcs.dem)^2]
+            slope: params.p
+            color: Black
+            min: calcs.dem-1
+            max: calcs.dem+1
+            strokeWidth: 1
+            show: params.d == 2
+
+
+
 
 
 
@@ -205,8 +217,6 @@ layout:
                         max: calcs.dem, show: params.d == 2 && params.showCS == true}
 
         - Point: {coordinates: [calcs.dem,params.p], color: Blue, droplines: {vertical: calcs.dem}, show: params.d == 2}
-
-
 
 
 
