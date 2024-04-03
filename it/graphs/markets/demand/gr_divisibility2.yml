@@ -54,7 +54,7 @@ layout:
           color: Blue
 
 # consumer surplus blue
-      - Area: {fn1: (params.a*params.m/(x)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0, max: calcs.d, show: params.showCS == true }
+      - Area: {fn1: (params.a*params.m/(x)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0.001, max: calcs.d, show: params.showCS == true }
 
     rightGraph:
       xAxis:
@@ -93,7 +93,7 @@ layout:
           color: Blue
 
 # consumer surplus blue
-      - Area: {fn1: (params.num*params.a*params.m/(x)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0, max: calcs.D, show: params.showCS == true }
+      - Area: {fn1: (params.num*params.a*params.m/(x)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0.001, max: calcs.D, show: params.showCS == true }
 
 
     sidebar:
