@@ -4,33 +4,32 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: a, value: 0.5}
-- {name: m, value: 20}
-- {name: num, value: 500, min: 100, max: 1000, round: 10}
+- {name: num, value: 500, min: 100, max: 1000, round: 50}
 - {name: p, value: 4, min: 1, max: 10}
-- {name: s, min: 0.01, max: 1.8, value: 0.5, round: 0.01}
 - {name: showCS, value: false}
 
 calcs:
-  d: (params.a*params.m/params.p)
+  d: (12-params.p)/4
   D: (calcs.d*params.num)
+  cs: ( -(params.p) + 12 ) * (calcs.d)/2
+  cstot: ( -(params.p) + 12 ) * (calcs.d)/2
 
 layout:
   TwoHorizontalGraphsPlusSidebar:
     leftGraph:
       xAxis:
         ticks: 5
-        max: 11
+        max: 3.5
         title: Unità del bene
       yAxis:
-        max: 11
+        max: 13
         ticks: 10
         title: Euro
       objects:
 
 # individual demand
       - Curve:
-          fn: (params.a*params.m/(x))
+          fn: 12-4*(x)
           color: Blue
           strokeWidth: 1.5
 
@@ -54,22 +53,22 @@ layout:
           color: Blue
 
 # consumer surplus blue
-      - Area: {fn1: (params.a*params.m/(x)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0.001, max: calcs.d, show: params.showCS == true }
+      - Area: {fn1: 12-4*(x), fn2: params.p, fill: Blue, opacity: params.ops, min: 0.001, max: calcs.d, show: params.showCS == true }
 
     rightGraph:
       xAxis:
-        max: 11000
+        max: 3000
         ticks: 5
         title: Unità del bene
       yAxis:
-        max: 11
+        max: 13
         ticks: 10
         title: Euro
       objects:
 
 # market demand
       - Curve:
-          fn: (params.num)*(params.a)*(params.m)/(x)
+          fn: (12-4*(x)/(params.num))
           color: Blue
           strokeWidth: 1.5
 
@@ -89,21 +88,27 @@ layout:
       - Point:
           coordinates: [calcs.D, params.p]
           droplines:
-            vertical: params.num*math.round(calcs.d,1)
+            vertical: calcs.D.toFixed(1)
           color: Blue
 
 # consumer surplus blue
-      - Area: {fn1: (params.num*params.a*params.m/(x)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0.001, max: calcs.D, show: params.showCS == true }
+      - Area: {fn1: (12-4*(x)/(params.num)), fn2: params.p, fill: Blue, opacity: params.ops, min: 0.001, max: calcs.D, show: params.showCS == true }
 
 
     sidebar:
       controls:
-      - title: Domanda individuale e di mercato per un bene infinitamente divisibile
+      - title: Domanda individuale e di mercato per un bene perfettamente divisibile
         checkboxes:
         - param: showCS
-          label: "\\text{Mostra surplus del consumatore.}"
+          label: "\\text{Mostra e calcola surplus dei consumatori.}"
         sliders:
         - param: p
           label: P
         - param: num
           label: N
+        divs:
+        - html: "`Il surplus del singolo consumatore (area azzurra nel grafico di sinistra) è pari a
+                  $ ${calcs.cs} $.
+        Il surplus totale dei consumatori (area azzurra nel grafico di destra) è pari a
+                  $ ${params.num * calcs.cstot} $.`"
+          show: params.showCS == true

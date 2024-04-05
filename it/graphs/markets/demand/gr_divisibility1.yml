@@ -231,20 +231,20 @@ layout:
           options:
             - Bene venduto in multipli di $1$
             - Bene venduto in multipli di $0.5$
-            - Bene infinitamente divisibile
+            - Bene perfettamente divisibile
         checkboxes:
         - param: showCS
           label: "\\text{Mostra e calcola il surplus del consumatore}"
         divs:
         - html: "`  `"
         - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ \\\\text{CS} = ${calcs.cs0.toFixed(1)} $$`"
+                  $$ CS = ${calcs.cs0.toFixed(1)} $$`"
           show: (params.d == 0 && params.showCS == true)
         - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ \\\\text{CS} = ${calcs.cs1.toFixed(1)} $$`"
+                  $$ CS = ${calcs.cs1.toFixed(1)} $$`"
           show: (params.d == 1 && params.showCS == true)
         - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ \\\\text{CS} = ${calcs.cs2} $$`"
+                  $$ CS = ${calcs.cs2} $$`"
           show: (params.d == 2 && params.showCS == true)
 
     explanation:
