@@ -23,7 +23,6 @@ calcs:
   minpb3: min(params.p,params.b3)
   minpb4: min(params.p,params.b4)
 
-aspectRatio: 1.5
 
 layout:
   OneGraphPlusSidebar:
@@ -99,10 +98,10 @@ layout:
           - html: "`Quando il prezzo è $P=${params.p}$ il surplus del consumatore è pari alla somma delle aree blu e rossa, ovvero $ ${calcs.cs}$. 
                   Quando il prezzo aumenta a $P'=${params.p2}$, il surplus del consumatore è pari all'area blu, ovvero $ ${calcs.cs2}$. Il negativo 
                   dell'area rossa, quindi, è la variazione di surplus del consumatore dovuta all'aumento del prezzo:
-                  $$ \\\\Delta CS = ${calcs.cs2}-${calcs.cs}=${calcs.cs2-calcs.cs} $$    `"
+                  $$  ${calcs.cs2}-${calcs.cs}=${calcs.cs2-calcs.cs} $$    `"
             show: (params.p2 > params.p) 
           - html: "`Quando il prezzo è $P=${params.p}$ il surplus del consumatore è pari all'area blu, ovvero $ ${calcs.cs}$. 
                   Quando il prezzo si riduce a $P'=${params.p2}$, il surplus del consumatore è pari alla somma delle aree blu e verde, ovvero $ ${calcs.cs2}$. 
                   L'area verde, quindi, è la variazione di surplus del consumatore dovuta alla riduzione del prezzo:
-                  $$ \\\\Delta CS = ${calcs.cs2}-${calcs.cs}=${calcs.cs2-calcs.cs} $$    `"
+                  $$  ${calcs.cs2}-${calcs.cs}=${calcs.cs2-calcs.cs} $$    `"
             show: (params.p2 < params.p) 

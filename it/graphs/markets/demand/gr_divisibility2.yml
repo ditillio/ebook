@@ -14,6 +14,8 @@ calcs:
   cs: ( -(params.p) + 12 ) * (calcs.d)/2
   cstot: ( -(params.p) + 12 ) * (calcs.d)/2
 
+aspectRatio: 1.84
+
 layout:
   TwoHorizontalGraphsPlusSidebar:
     leftGraph:

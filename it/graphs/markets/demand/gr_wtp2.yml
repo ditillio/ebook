@@ -58,9 +58,6 @@ layout:
           label: P
         - param: numb
           label: N_A
-      divs:
-      - html: "` Quando $ P=${params.p} $ il surplus di ciascun consumatore del gruppo A è pari a ${calcs.csb}, 
-                quindi $N_A \\\\times ${calcs.csb} = ${params.numb*calcs.csb}$ per l'intero gruppo. `"
 
     middleGraph:
       xAxis:
@@ -94,10 +91,6 @@ layout:
           label: P
         - param: numa
           label: N_B
-      divs:
-      - html: "` Quando $ P=${params.p} $ il surplus di ciascun consumatore del gruppo B è pari a ${calcs.csa}, 
-                quindi $N_B \\\\times ${calcs.csa} = ${params.numa*calcs.csa}$ per l'intero gruppo. `"
-
 
     rightGraph:
       xAxis:
@@ -136,8 +129,13 @@ layout:
       sliders:
         - param: p
           label: P
-      divs:
-      - html: "` Quando $ P=${params.p} $ il surplus dei consumatori è pari a
-              $$ N_A \\\\times ${calcs.csb} + N_B \\\\times ${calcs.csa} = ${params.numa*calcs.csa+params.numb*calcs.csb} $$ `"
 
+    explanation:
+      divs:
+        - html: "` Quando $ P=${params.p} $ il surplus di ciascun consumatore del gruppo A è pari a ${calcs.csb}, 
+                quindi $N_A \\\\times ${calcs.csb} = ${params.numb*calcs.csb}$ per l'intero gruppo. 
+                Analogamente, il surplus di ciascun consumatore del gruppo B è pari a ${calcs.csa}, 
+                quindi $N_B \\\\times ${calcs.csa} = ${params.numa*calcs.csa}$ per l'intero gruppo. 
+                 Il surplus totale dei consumatori è dunque pari a 
+                 $ N_A \\\\times ${calcs.csb} + N_B \\\\times ${calcs.csa} = ${params.numa*calcs.csa+params.numb*calcs.csb} $. `"
 

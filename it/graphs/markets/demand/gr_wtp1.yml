@@ -115,53 +115,53 @@ layout:
         divs:
         - html: "`Quando $ P = ${params.p} $ il consumatore non acquista il bene, dato che anche la prima unità,
         quella che per lui vale di più, ovvero ${params.b1.toFixed(0)}, costa più di ${params.b1.toFixed(0)}. Il surplus
-        del consumatore è $CS=0$.`"
+        del consumatore è zero.`"
           show: (params.p > params.b1) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista una unità del bene (è in realtà indifferente tra acquistarne una unità e 
         non acquistarlo affatto). Infatti
         la prima unità, quella che per lui vale di più, costa tanto quanto essa vale per lui, ovvero ${params.b1.toFixed(0)}. Non ne
          acquista di più perché la seconda, terza, quarta, quinta, ... unità per lui valgono ${params.b2}, ${params.b3}, ${params.b4}, $0$, ...,
-         cioè tutte meno di ${params.p}. Il surplus del consumatore è $CS=0$.`"
+         cioè tutte meno di ${params.p}. Il surplus del consumatore è zero.`"
           show: (params.p == params.b1) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista una unità del bene, che per lui vale ${params.b1}. Non ne acquista di più perché 
         la seconda, terza, quarta, quinta, ... unità per lui valgono ${params.b2}, ${params.b3}, ${params.b4}, $0$ ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1} - ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1} - ${params.p} = ${calcs.cs} $$ `"
           show: (params.b2 < params.p) && (params.p < params.b1) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista due unità del bene (è in realtà indifferente tra acquistarne una o due, dato che la seconda 
         unità costa tanto quanto essa vale per lui). Non ne acquista più di due perché 
         la terza, quarta, quinta, ... unità per lui valgono ${params.b3}, ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1+params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1+params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b2 == params.p) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista due unità del bene, che per lui valgono complessivamente 
         $ ${params.b1} + ${params.b2} = ${params.b1 + params.b2} $. Non ne acquista di più perché 
         la terza, quarta, quinta, ... unità per lui valgono ${params.b3}, ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1+params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1+params.b2} - 2\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b3 < params.p) && (params.p < params.b2) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista tre unità del bene (è in realtà indifferente tra acquistarne due o tre, dato che la terza 
         unità costa tanto quanto essa vale per lui). Non ne acquista più di tre perché 
         la quarta, quinta, ... unità per lui valgono ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1+params.b2+params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1+params.b2+params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b3 == params.p) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista tre unità del bene, che per lui valgono complessivamente 
         $ ${params.b1} + ${params.b2} + ${params.b3} = ${params.b1 + params.b2 + params.b3} $. Non ne acquista di più perché 
         la quarta, quinta, ... unità per lui valgono ${params.b4}, $0$, ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1+params.b2+params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1+params.b2+params.b3} - 3\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b4 < params.p) && (params.p < params.b3) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista quattro unità del bene (è in realtà indifferente tra acquistarne tre o quattro,
          dato che la quarta 
         unità costa tanto quanto essa vale per lui). Non ne acquista più di quattro perché 
         la quinta, sesta, ... unità per lui valgono $0$, ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1+params.b2+params.b3+params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1+params.b2+params.b3+params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b4 == params.p) 
         - html: "`Quando $ P = ${params.p} $ il consumatore acquista quattro unità del bene, che per lui valgono complessivamente 
         $ ${params.b1} + ${params.b2} + ${params.b3} + ${params.b4} = ${params.b1 + params.b2 + params.b3 + params.b4} $. Non ne acquista di più perché 
         la quinta, sesta, ... unità per lui valgono $0$, ..., cioè tutte meno di ${params.p}.
         Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è
-        $$ CS = ${params.b1+params.b2+params.b3+params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
+        $$  ${params.b1+params.b2+params.b3+params.b4} - 4\\\\times ${params.p} = ${calcs.cs} $$ `"
           show: (params.b4 > params.p) 

@@ -237,14 +237,16 @@ layout:
           label: "\\text{Mostra e calcola il surplus del consumatore}"
         divs:
         - html: "`  `"
+        - html: "`  `"
+        - html: "`  `"
         - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ CS = ${calcs.cs0.toFixed(1)} $$`"
+                  $$ ${calcs.cs0.toFixed(1)} $$`"
           show: (params.d == 0 && params.showCS == true)
         - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ CS = ${calcs.cs1.toFixed(1)} $$`"
+                  $$ ${calcs.cs1.toFixed(1)} $$`"
           show: (params.d == 1 && params.showCS == true)
         - html: "`Il surplus del consumatore (area azzurra nel grafico di sotto, o lunghezza del segmento blu nel grafico di sopra) è pari a
-                  $$ CS = ${calcs.cs2} $$`"
+                  $$ ${calcs.cs2} $$`"
           show: (params.d == 2 && params.showCS == true)
 
     explanation:
