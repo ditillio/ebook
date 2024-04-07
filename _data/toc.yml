@@ -47,6 +47,19 @@ parts:
         title:
           en: Competition and market equilibrium
           it: Concorrenza ed equilibrio di mercato
+        sections:
+          - title:
+              en: Title of Section 3.1
+              it: Cournot
+          - title:
+              en: Title of Section 3.2
+              it: Bertrand  
+          - title:
+              en: Title of Section 3.3
+              it: Beni differenziati
+          - title:
+              en: Title of Section 3.4
+              it: Altro
   - title:
       en: Information
       it: Informazione
