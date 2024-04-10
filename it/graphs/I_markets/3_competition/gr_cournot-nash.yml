@@ -32,10 +32,10 @@ layout:
     graph:
       xAxis:
         ticks: 5
-        max: 30
+        max: 25
         title: " $ q_1 $ " 
       yAxis:
-        max: 30
+        max: 25
         ticks: 5
         title: " $ q_2 $ "
       objects:
@@ -46,7 +46,7 @@ layout:
           ind: y
           label:
             text: BR_1
-            y: 0.8
+            y: 21
           color: Blue
           strokeWidth: 1.5
           show: params.g !== 0
@@ -56,7 +56,7 @@ layout:
           fn: ( params.aa2-params.g*(x)-params.m2 ) / 2
           label:
             text: BR_2
-            x: 0.8
+            x: 22
 #            position: b
           color: Red
           strokeWidth: 1.5
@@ -88,7 +88,7 @@ layout:
           show: params.g == 0
           label:
             text: BR_1
-            y: 10.6
+            y: 22
 
       - Line:
           point: [0,calcs.monquantity2]
@@ -98,7 +98,7 @@ layout:
           show: params.g == 0
           label:
             text: BR_2
-            x: 10.8
+            x: 22
 
     sidebar:
       controls:
