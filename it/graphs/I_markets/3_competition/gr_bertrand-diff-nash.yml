@@ -4,27 +4,23 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: g, value: 0.5, min: 0, max: 0.8, round: 0.05}
-- {name: aa1, value: 11, min: 8, max: 16, round: 1}
-- {name: aa2, value: 11, min: 8, max: 16, round: 1}
-- {name: bb1, value: 1, min: 1, max: 1, round: 1}
-- {name: bb2, value: 1, min: 1, max: 1, round: 1}
-- {name: m1, value: 0.5, min: 0, max: 4, round: 0.5}
-- {name: m2, value: 0.5, min: 0, max: 4, round: 0.5}
+- {name: g, value: 0.5, min: -0.5, max: 0.8, round: 0.1}
+- {name: aa1, value: 11, min: 8, max: 14, round: 1}
+- {name: aa2, value: 11, min: 8, max: 14, round: 1}
+- {name: m1, value: 0.5, min: 0, max: 3, round: 0.5}
+- {name: m2, value: 0.5, min: 0, max: 3, round: 0.5}
 
 calcs:
-  d: params.bb1*params.bb2-params.g^2
-  a1: (params.aa1*params.bb2-params.aa2*params.g)/calcs.d
-  a2: (params.aa2*params.bb1-params.aa1*params.g)/calcs.d
-  b1: params.bb2/calcs.d
-  b2: params.bb1/calcs.d
+  d: 1-params.g^2
+  a1: (params.aa1-params.aa2*params.g)/calcs.d
+  a2: (params.aa2-params.aa1*params.g)/calcs.d
+  b: 1/calcs.d
   c: params.g/calcs.d
-  D: ( 4 * calcs.b1 * calcs.b2 - (calcs.c)^2 )
-  nash2: ( 2 * calcs.b1 * ( calcs.a2 + calcs.b2 * params.m2 ) + calcs.c * ( calcs.a1 + calcs.b1 * params.m1 ) ) / calcs.D
-  nash1: ( 2 * calcs.b2 * ( calcs.a1 + calcs.b1 * params.m1 ) + calcs.c * ( calcs.a2 + calcs.b2 * params.m2 ) ) / calcs.D
-  monprice1: ( calcs.a1 + params.m1 * calcs.b1 ) / ( 2 * calcs.b1 )
-  monprice2: ( calcs.a2 + params.m2 * calcs.b2 ) / ( 2 * calcs.b2 )
-
+  D: ( 4 * calcs.b * calcs.b - (calcs.c)^2 )
+  nash2: ( 2 * calcs.b * ( calcs.a2 + calcs.b * params.m2 ) + calcs.c * ( calcs.a1 + calcs.b * params.m1 ) ) / calcs.D
+  nash1: ( 2 * calcs.b * ( calcs.a1 + calcs.b * params.m1 ) + calcs.c * ( calcs.a2 + calcs.b * params.m2 ) ) / calcs.D
+  monprice1: ( calcs.a1 + params.m1 * calcs.b ) / ( 2 * calcs.b )
+  monprice2: ( calcs.a2 + params.m2 * calcs.b ) / ( 2 * calcs.b )
 
 #aspectRatio: 1
 
@@ -43,7 +39,7 @@ layout:
 
 # BR1
       - Curve:
-          fn: ( calcs.a1+calcs.b1*params.m1+calcs.c*(y) ) / ( 2 * calcs.b1 )
+          fn: ( calcs.a1+calcs.b*params.m1+calcs.c*(y) ) / ( 2 * calcs.b )
           ind: y
           label:
             text: BR_1
@@ -54,7 +50,7 @@ layout:
 
 # BR2
       - Curve:
-          fn: ( calcs.a2+calcs.b2*params.m2+calcs.c*(x) ) / ( 2 * calcs.b2 )
+          fn: ( calcs.a2+calcs.b*params.m2+calcs.c*(x) ) / ( 2 * calcs.b )
           label:
             text: BR_2
             x: 10.6
@@ -103,7 +99,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Concorrenza sui prezzi
+      - title: Concorrenza sui prezzi - sostituti e complementi
 #        checkboxes:
 #        - param: showCS
 #          label: "\\text{Mostra e calcola surplus dei consumatori.}"
@@ -119,14 +115,24 @@ layout:
         - param: m2
           label: c_2
         divs:
-        - html: "` Quando $\\\\alpha_1=${params.aa1.toFixed(0)}$, $\\\\alpha_2=${params.aa2.toFixed(0)}$ 
-                  e $\\\\gamma=${params.g.toFixed(2)}$, le funzioni di domanda inversa nei due mercati sono
-                  $$ P_1 = ${params.aa1.toFixed(0)} - X_1 - ${params.g.toFixed(2)} X_2 $$
-                  $$ P_2 = ${params.aa2.toFixed(0)} - X_2 - ${params.g.toFixed(2)} X_1 $$
-                  Dato che $c_1=${params.m1}$ e $c_2=${params.m2}$, i prezzi di equilibrio sono 
+        - html: "` Poiché $\\\\gamma=${params.g.toFixed(1)}>0$, i due beni sono <strong>sostituti</strong>.
+                  Dato che  $\\\\alpha_1=${params.aa1.toFixed(0)}$ e $\\\\alpha_2=${params.aa2.toFixed(0)}$, le funzioni di domanda 
+                  inversa nei due mercati sono
+                  $$ P_1 = ${params.aa1.toFixed(0)} - X_1 - ${params.g.toFixed(1)} X_2 $$
+                  $$ P_2 = ${params.aa2.toFixed(0)} - X_2 - ${params.g.toFixed(1)} X_1 $$
+                  Tenendo in considerazione che $c_1=${params.m1}$ e $c_2=${params.m2}$, i prezzi di equilibrio sono 
                   $$ P^*_1 = ${calcs.nash1.toFixed(1)}  \\\\qquad P^*_2 = ${calcs.nash2.toFixed(1)}  $$
                   `"
-          show: params.g !== 0 && params.g !== 1
+          show: params.g > 0
+        - html: "` Poiché $\\\\gamma=${params.g.toFixed(1)}<0$, i due beni sono <strong>complementi</strong>.
+                  Dato che  $\\\\alpha_1=${params.aa1.toFixed(0)}$ e $\\\\alpha_2=${params.aa2.toFixed(0)}$, le funzioni di domanda 
+                  inversa nei due mercati sono
+                  $$ P_1 = ${params.aa1.toFixed(0)} - X_1 + ${-params.g.toFixed(1)} X_2 $$
+                  $$ P_2 = ${params.aa2.toFixed(0)} - X_2 + ${-params.g.toFixed(1)} X_1 $$
+                  Tenendo in considerazione che $c_1=${params.m1}$ e $c_2=${params.m2}$, i prezzi di equilibrio sono 
+                  $$ P^*_1 = ${calcs.nash1.toFixed(1)}  \\\\qquad P^*_2 = ${calcs.nash2.toFixed(1)}  $$
+                  `"
+          show: params.g < 0
         - html: "` Quando $\\\\alpha_1=${params.aa1.toFixed(0)}$, $\\\\alpha_2=${params.aa2.toFixed(0)}$ 
                   e $\\\\gamma=0$, le funzioni di domanda inversa nei due mercati sono
                   $$ P_1 = ${params.aa1} - X_1  \\\\qquad P_2 = ${params.aa2} - X_2  $$
@@ -136,3 +142,4 @@ layout:
                   $$ P^*_1 = P^M_1 = ${calcs.monprice1}  \\\\qquad P^*_2 = P^M_2 = ${calcs.monprice2}  $$
                   `"
           show: params.g == 0
+
