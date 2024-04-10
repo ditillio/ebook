@@ -4,7 +4,7 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: g, value: 0.5, min: 0, max: 0.9999, round: 0.0001}
+- {name: g, value: 0.5, min: 0, max: 0.99, round: 0.01}
 - {name: aa, value: 11, min: 8, max: 16, round: 1}
 - {name: bb, value: 1, min: 1, max: 1, round: 1}
 - {name: m, value: 2, min: 0, max: 4, round: 1}
@@ -102,7 +102,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Domanda individuale e di mercato per un bene perfettamente divisibile
+      - title: Concorrenza sui prezzi - caso simmetrico
 #        checkboxes:
 #        - param: showCS
 #          label: "\\text{Mostra e calcola surplus dei consumatori.}"
