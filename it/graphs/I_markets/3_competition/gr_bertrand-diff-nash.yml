@@ -41,15 +41,25 @@ layout:
 
 # BR1
       - Curve:
-          fn: ( 2 * calcs.b1 * (x) - calcs.a1 - calcs.b1 * params.m1 ) / calcs.c
+          fn: ( calcs.a1+calcs.b1*params.m1+calcs.c*(y) ) / ( 2 * calcs.b1 )
+          ind: y
+          label:
+            text: BR_1
+            y: 10.5
           color: Blue
           strokeWidth: 1.5
+          show: params.g !== 0
 
 # BR2
       - Curve:
           fn: ( calcs.a2+calcs.b2*params.m2+calcs.c*(x) ) / ( 2 * calcs.b2 )
+          label:
+            text: BR_2
+            x: 10.6
+#            position: b
           color: Red
           strokeWidth: 1.5
+          show: params.g !== 0
 
 
 # equilibrium
@@ -83,3 +93,19 @@ layout:
         - html: "` parametro $ b_1 = ${calcs.b1} $ `"
         - html: "` parametro $ d = ${calcs.d} $ `"
           show: params.op1 == 0.15
+        - html: "` Quando $\\\\alpha=${params.aa.toFixed(0)}$ e $\\\\gamma=${params.g.toFixed(2)}$, le funzioni di domanda inversa nei due mercati sono
+                  $$ P_1 = ${params.aa.toFixed(0)} - X_1 - ${params.g.toFixed(2)} X_2 $$
+                  $$ P_2 = ${params.aa.toFixed(0)} - X_2 - ${params.g.toFixed(2)} X_1 $$
+                  Dato che $c_1=${params.m1}$ e $c_2=${params.m2}$, i prezzi di equilibrio sono 
+                  $$ P^*_1 = ${calcs.nash1.toFixed(1)}  \\\\qquad P^*_2 = ${calcs.nash2.toFixed(1)}  $$
+                  `"
+          show: params.g !== 0 && params.g !== 1
+        - html: "` Quando $\\\\alpha_1=${params.aa1.toFixed(0)}$ e $\\\\alpha_2=${params.aa2.toFixed(0)}$ 
+                  e $\\\\gamma=0$, le funzioni di domanda inversa nei due mercati sono
+                  $$ P_1 = ${params.aa} - X_1  \\\\qquad P_2 = ${params.aa} - X_2  $$
+                  Dato che $\\\\gamma=0$, i due beni sono <strong>indipendenti</strong>. La risposta ottima di ciascuna impresa è quindi
+                  scegliere il prezzo di monopolio nel proprio mercato, indipendentemente dal prezzo
+                  scelto dall'impresa operante nell'altro mercato: 
+                  $$ P^*_1 = P^M_1 = ${calcs.monprice1}  \\\\qquad P^*_2 = P^M_2 = ${calcs.monprice2}  $$
+                  `"
+          show: params.g == 0
