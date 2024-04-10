@@ -121,16 +121,10 @@ layout:
           show: params.g !== 0 && params.g !== 1
         - html: "` Quando $\\\\alpha=${params.aa.toFixed(0)}$ e $\\\\gamma=0$, le funzioni di domanda inversa nei due mercati sono
                   $$ P_1 = ${params.aa} - X_1  \\\\qquad P_2 = ${params.aa} - X_2  $$
-                  Dato che $c_1=c_2=${params.m}$, i prezzi di equilibrio sono 
-                  $$ P^*_1 = P^M_1 = ${calcs.monprice1}  \\\\qquad P^*_2 = P^M_2 = ${calcs.monprice2}  $$
-                  `"
-          show: params.g == 0
-
-    explanation:
-      divs:
-        - html: "` Dato che $\\\\gamma=0$, i due beni sono <strong>indipendenti</strong>. La risposta ottima di ciascuna impresa è quindi
+                  Dato che $\\\\gamma=0$, i due beni sono <strong>indipendenti</strong>. La risposta ottima di ciascuna impresa è quindi
                   scegliere il prezzo di monopolio nel proprio mercato, indipendentemente dal prezzo
                   scelto dall'impresa operante nell'altro mercato: 
                   $$ P^*_1 = P^M_1 = ${calcs.monprice1}  \\\\qquad P^*_2 = P^M_2 = ${calcs.monprice2}  $$
                   `"
           show: params.g == 0
+
