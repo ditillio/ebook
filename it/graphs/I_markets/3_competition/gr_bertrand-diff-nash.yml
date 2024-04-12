@@ -4,11 +4,11 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: g, value: 0.5, min: -0.5, max: 0.8, round: 0.1}
-- {name: aa1, value: 11, min: 8, max: 14, round: 1}
-- {name: aa2, value: 11, min: 8, max: 14, round: 1}
-- {name: m1, value: 0.5, min: 0, max: 3, round: 0.5}
-- {name: m2, value: 0.5, min: 0, max: 3, round: 0.5}
+- {name: g, value: 0.5, min: -0.3, max: 0.7, round: 0.1}
+- {name: aa1, value: 10, min: 8, max: 12, round: 1}
+- {name: aa2, value: 10, min: 8, max: 12, round: 1}
+- {name: m1, value: 1, min: 0, max: 3, round: 0.5}
+- {name: m2, value: 1, min: 0, max: 3, round: 0.5}
 
 calcs:
   d: 1-params.g^2
@@ -64,8 +64,8 @@ layout:
       - Point:
           coordinates: [calcs.nash1, calcs.nash2]
           droplines:
-            horizontal: calcs.nash2.toFixed(1)
-            vertical: calcs.nash1.toFixed(1)
+            horizontal: calcs.nash2.toFixed(2)
+            vertical: calcs.nash1.toFixed(2)
           color: Green
 
 # monopoly
@@ -115,30 +115,15 @@ layout:
         - param: m2
           label: c_2
         divs:
-        - html: "` Poiché $\\\\gamma=${params.g.toFixed(1)}>0$, i due beni sono <strong>sostituti</strong>.
-                  Dato che  $\\\\alpha_1=${params.aa1.toFixed(0)}$ e $\\\\alpha_2=${params.aa2.toFixed(0)}$, le funzioni di domanda 
-                  inversa nei due mercati sono
-                  $$ P_1 = ${params.aa1.toFixed(0)} - X_1 - ${params.g.toFixed(1)} X_2 $$
-                  $$ P_2 = ${params.aa2.toFixed(0)} - X_2 - ${params.g.toFixed(1)} X_1 $$
-                  Tenendo in considerazione che $c_1=${params.m1}$ e $c_2=${params.m2}$, i prezzi di equilibrio sono 
-                  $$ P^*_1 = ${calcs.nash1.toFixed(1)}  \\\\qquad P^*_2 = ${calcs.nash2.toFixed(1)}  $$
+        - html: "` Poiché $\\\\gamma=${params.g.toFixed(1)}>0$, i due beni sono <strong>sostituti</strong>. I prezzi di equilibrio sono 
+                  $$ P^*_1 = ${calcs.nash1.toFixed(2)}  \\\\quad \\\\quad P^*_2 = ${calcs.nash2.toFixed(2)}  $$
                   `"
           show: params.g > 0
-        - html: "` Poiché $\\\\gamma=${params.g.toFixed(1)}<0$, i due beni sono <strong>complementi</strong>.
-                  Dato che  $\\\\alpha_1=${params.aa1.toFixed(0)}$ e $\\\\alpha_2=${params.aa2.toFixed(0)}$, le funzioni di domanda 
-                  inversa nei due mercati sono
-                  $$ P_1 = ${params.aa1.toFixed(0)} - X_1 + ${-params.g.toFixed(1)} X_2 $$
-                  $$ P_2 = ${params.aa2.toFixed(0)} - X_2 + ${-params.g.toFixed(1)} X_1 $$
-                  Tenendo in considerazione che $c_1=${params.m1}$ e $c_2=${params.m2}$, i prezzi di equilibrio sono 
-                  $$ P^*_1 = ${calcs.nash1.toFixed(1)}  \\\\qquad P^*_2 = ${calcs.nash2.toFixed(1)}  $$
+        - html: "` Poiché $\\\\gamma=${params.g.toFixed(1)}<0$, i due beni sono <strong>complementi</strong>. I prezzi di equilibrio sono 
+                  $$ P^*_1 = ${calcs.nash1.toFixed(2)}  \\\\quad \\\\quad P^*_2 = ${calcs.nash2.toFixed(2)}  $$
                   `"
           show: params.g < 0
-        - html: "` Quando $\\\\alpha_1=${params.aa1.toFixed(0)}$, $\\\\alpha_2=${params.aa2.toFixed(0)}$ 
-                  e $\\\\gamma=0$, le funzioni di domanda inversa nei due mercati sono
-                  $$ P_1 = ${params.aa1} - X_1  \\\\qquad P_2 = ${params.aa2} - X_2  $$
-                  Dato che $\\\\gamma=0$, i due beni sono <strong>indipendenti</strong>. La risposta ottima di ciascuna impresa è quindi
-                  scegliere il prezzo di monopolio nel proprio mercato, indipendentemente dal prezzo
-                  scelto dall'impresa operante nell'altro mercato: 
+        - html: "` Poiché $\\\\gamma=0$, i due beni sono <strong>indipendenti</strong>. I prezzi di equilibrio sono 
                   $$ P^*_1 = P^M_1 = ${calcs.monprice1}  \\\\qquad P^*_2 = P^M_2 = ${calcs.monprice2}  $$
                   `"
           show: params.g == 0
