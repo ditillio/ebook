@@ -22,12 +22,20 @@ layout:
       xAxis:
         ticks: 5
         max: 3.5
-        title: Unità del bene
       yAxis:
         max: 13
         ticks: 10
-        title: Euro
       objects:
+
+      - Label:
+              coordinates: [3.3, 0]
+              text: "` \\\\text{litri} `"
+              yPixelOffset: 0
+              position: l
+      - Label:
+              coordinates: [0, 13]
+              text: "` \\\\text{euro/litro}  `"
+              xPixelOffset: 0
 
 # individual demand
       - Curve:
@@ -61,12 +69,20 @@ layout:
       xAxis:
         max: 3000
         ticks: 5
-        title: Unità del bene
       yAxis:
         max: 13
         ticks: 10
-        title: Euro
       objects:
+
+      - Label:
+              coordinates: [3000, 0]
+              text: "` \\\\text{litri} `"
+              yPixelOffset: 0
+              position: l
+      - Label:
+              coordinates: [0, 13]
+              text: "` \\\\text{euro/litro}  `"
+              xPixelOffset: 0
 
 # market demand
       - Curve:

@@ -23,14 +23,22 @@ layout:
   ThreeHorizontalGraphs:
     leftGraph:
       xAxis:
-        title: Unità del bene
-        max: 6.2
-        ticks: 5
+        max: 4.9
+        ticks: 4
       yAxis:
-        title: Euro
         max: 550
         ticks: 5
       objects:
+      - Label:
+              coordinates: [4.9, 0]
+              text: "` \\\\text{unità} `"
+              yPixelOffset: 0
+              xPixelOffset: -5
+              position: m
+      - Label:
+              coordinates: [0, 550]
+              text: "` \\\\text{euro/unità}  `"
+              xPixelOffset: 0
       - Line:
           yIntercept: params.p
           color: Green
@@ -61,14 +69,22 @@ layout:
 
     middleGraph:
       xAxis:
-        title: Unità del bene
-        max: 6.2
-        ticks: 5
+        max: 4.9
+        ticks: 4
       yAxis:
-        title: Euro
         max: 550
         ticks: 5
       objects:
+      - Label:
+              coordinates: [4.9, 0]
+              text: "` \\\\text{unità} `"
+              yPixelOffset: 0
+              xPixelOffset: -5
+              position: m
+      - Label:
+              coordinates: [0, 550]
+              text: "` \\\\text{euro/unità}  `"
+              xPixelOffset: 0
       - Line:
           yIntercept: params.p
           color: Green
@@ -94,14 +110,23 @@ layout:
 
     rightGraph:
       xAxis:
-        title: Unità del bene
         max: 800
         ticks: 4
       yAxis:
-        title: Euro
         max: 550
         ticks: 5
+
       objects:
+      - Label:
+              coordinates: [800, 0]
+              text: "` \\\\text{unità} `"
+              yPixelOffset: 0
+              xPixelOffset: -5
+              position: m
+      - Label:
+              coordinates: [0, 550]
+              text: "` \\\\text{euro/unità}  `"
+              xPixelOffset: 0
       - Line:
           yIntercept: params.p
           color: Green

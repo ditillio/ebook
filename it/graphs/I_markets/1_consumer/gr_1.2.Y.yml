@@ -4,10 +4,10 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: p1, value: 10, min: 2, max: 20}
-- {name: p2, value: 10, min: 2, max: 20}
-- {name: g, value: 0, min: -0.2, max: 0.3, round: 0.1}
-- {name: aa1, value: 20, min: 8, max: 12}
+- {name: p1, value: 5, min: 2, max: 8}
+- {name: p2, value: 14, min: 10, max: 18}
+- {name: g, value: 0, min: -0.2, max: 0.2, round: 0.1}
+- {name: aa1, value: 10, min: 8, max: 12}
 - {name: aa2, value: 20, min: 8, max: 12}
 
 calcs:
@@ -18,17 +18,25 @@ calcs:
 #aspectRatio: 3
 
 layout:
-  TwoHorizontalGraphsPlusSidebar:
-    leftGraph:
+  TwoVerticalGraphsPlusSidebar:
+    topGraph:
       xAxis:
         ticks: 5
-        max: 25
-        title: Bene 1
+        max: 15
       yAxis:
-        max: 25
+        max: 15
         ticks: 5
-        title: Euro
       objects:
+
+      - Label:
+            coordinates: [15, 0]
+            text: "` \\\\text{L} `"
+            yPixelOffset: 0
+            position: l
+      - Label:
+            coordinates: [0, 14.5]
+            text: "` \\\\text{eur/L}  `"
+            xPixelOffset: 0
 
 # individual demand good 1
       - Curve:
@@ -43,7 +51,7 @@ layout:
           color: Green
           label:
             text: P_1
-            x: 24
+            x: 15
 #            position: bl
           drag:
             - vertical: p1
@@ -56,16 +64,53 @@ layout:
             vertical: calcs.x1opt.toFixed(1)
           color: Blue
 
-    rightGraph:
+    bottomGraph:
       xAxis:
         ticks: 5
         max: 25
-        title: Bene 2
       yAxis:
         max: 25
         ticks: 5
-        title: Euro
       objects:
+
+# good 2 = apples (independent)
+      - Label:
+            coordinates: [25, 0]
+            text: "` \\\\text{kg} `"
+            yPixelOffset: 0
+            position: l
+            show: params.g == 0
+      - Label:
+            coordinates: [0, 25]
+            text: "` \\\\text{eur/kg}  `"
+            xPixelOffset: 0
+            show: params.g == 0
+
+# good 2 = hours car sharing (complement)
+      - Label:
+            coordinates: [25, 0]
+            text: "` \\\\text{min} `"
+            yPixelOffset: 0
+            position: l
+            show: params.g < 0
+      - Label:
+            coordinates: [0, 25]
+            text: "` \\\\text{eur/min}  `"
+            xPixelOffset: 0
+            show: params.g < 0
+
+# good 2 = km taxi (substitute)
+      - Label:
+            coordinates: [25, 0]
+            text: "` \\\\text{km} `"
+            yPixelOffset: 0
+            position: l
+            show: params.g > 0
+      - Label:
+            coordinates: [0, 25]
+            text: "` \\\\text{eur/km}  `"
+            xPixelOffset: 0
+            show: params.g > 0
 
 # individual demand good 2
       - Curve:
@@ -80,7 +125,7 @@ layout:
           color: Green
           label:
             text: P_2
-            x: 24
+            x: 25
 #            position: bl
           drag:
             - vertical: p2
@@ -123,7 +168,7 @@ layout:
           - html: "`  `"
           - html: "`  `"
           - html: "`  `"
-          - html: "` Dato che $\\\\sigma=${params.g.toFixed(1)}=0$, i due beni sono <strong>indipendenti</strong>. 
+          - html: "` Dato che $\\\\sigma=0$, i due beni sono <strong>indipendenti</strong>. 
                   Al variare del prezzo di uno dei due beni, la curva di domanda per l'altro bene non si sposta. 
             `"
             show: params.g == 0

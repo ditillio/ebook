@@ -1,0 +1,132 @@
+
+schema: EconSchema
+params:
+- {name: op1, value: 0.15}
+- {name: op2, value: 0.1}
+- {name: ops, value: 0.2}
+- {name: p1, value: 5, min: 2, max: 8}
+- {name: p2, value: 14, min: 10, max: 18}
+- {name: g, value: -0.5, min: -0.2, max: 0.2, round: 0.1}
+- {name: aa1, value: 6, min: 8, max: 12}
+- {name: aa2, value: 8, min: 8, max: 12}
+- {name: x1, value: 0, min: 0, max: 4}
+- {name: x2, value: 0, min: 0, max: 4}
+
+calcs:
+  d: 1-params.g^2
+  x1opt: ( params.aa1 - params.g * params.aa2 - params.p1 + params.g * params.p2 ) / calcs.d
+  x2opt: ( params.aa2 - params.g * params.aa1 - params.p2 + params.g * params.p1 ) / calcs.d
+
+#aspectRatio: 3
+
+layout:
+  TwoHorizontalGraphsPlusSidebar:
+    leftGraph:
+      xAxis:
+        ticks: 5
+        max: 4.9
+      yAxis:
+        max: 8
+        ticks: 10
+      objects:
+
+      - Label:
+            coordinates: [4.9, 0]
+            text: "` \\\\text{litri} `"
+            xPixelOffset: 10
+            position: m
+      - Label:
+            coordinates: [0, 22]
+            text: "` \\\\text{utilità/litro}  `"
+            xPixelOffset: 0
+
+# marginal utility good 1
+      - Point: {coordinates: [1, params.aa1 - 1 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [2, params.aa1 - 2 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [3, params.aa1 - 3 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [4, params.aa1 - 4 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [1, params.aa1 - 1 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x1 > 0}
+      - Point: {coordinates: [2, params.aa1 - 2 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x1 > 1}
+      - Point: {coordinates: [3, params.aa1 - 3 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x1 > 2}
+      - Point: {coordinates: [4, params.aa1 - 4 - params.g*params.x2], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x1 > 3}
+
+    rightGraph:
+      xAxis:
+        ticks: 5
+        max: 4.9
+      yAxis:
+        max: 8
+        ticks: 10
+      objects:
+
+      - Label:
+            coordinates: [4.9, 0]
+            text: "` \\\\text{litri} `"
+            xPixelOffset: 10
+            position: m
+      - Label:
+            coordinates: [0, 22]
+            text: "` \\\\text{utilità/litro}  `"
+            xPixelOffset: 0
+
+# marginal utility good 2
+      - Point: {coordinates: [1, params.aa2 - 1 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [2, params.aa2 - 2 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [3, params.aa2 - 3 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [4, params.aa2 - 4 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Red}
+      - Point: {coordinates: [1, params.aa2 - 1 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x2 > 0}
+      - Point: {coordinates: [2, params.aa2 - 2 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x2 > 1}
+      - Point: {coordinates: [3, params.aa2 - 3 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x2 > 2}
+      - Point: {coordinates: [4, params.aa2 - 4 - params.g*params.x1], droplines: {vertical: ,horizontal:}, color: Blue, show: params.x2 > 3}
+
+    rightControls:
+      title: Domanda di mercato
+      sliders:
+        - param: x1
+          label: "` \\\\text{litri} `"
+
+
+
+    sidebar:
+      controls:
+      - title: Domanda lineare - sostituti e complementi
+#        checkboxes:
+#        - param: showCS
+#          label: "\\text{Mostra e calcola surplus dei consumatori.}"
+        sliders:
+#        - param: aa1
+#          label: \alpha_1
+#        - param: aa2
+#          label: \alpha_2
+        - param: g
+          label: \sigma
+        - param: x2
+          label: X_2
+#        divs:
+#          - html: "` Dato che $\\\\sigma=${params.g.toFixed(1)}>0$, i due beni sono <strong>sostituti</strong>. 
+#                  All'aumentare del prezzo di uno dei due beni, la curva di domanda per l'altro bene si sposta 
+#                  a destra. 
+#            `"
+#            show: params.g > 0
+
+    explanation:
+        divs:
+          - html: "`  `"
+          - html: "`  `"
+          - html: "`  `"
+          - html: "`  `"
+          - html: "` Dato che $\\\\sigma=0$, i due beni sono <strong>indipendenti</strong>. 
+                  Al variare del prezzo di uno dei due beni, la curva di domanda per l'altro bene non si sposta. 
+            `"
+            show: params.g == 0
+          - html: "` Dato che $\\\\sigma=${params.g.toFixed(1)}>0$, i due beni sono <strong>sostituti</strong>. 
+                  All'aumentare del prezzo di uno dei due beni, la curva di domanda per l'altro bene si sposta 
+                  a destra. 
+            `"
+            show: params.g > 0
+          - html: "` Dato che $\\\\sigma=${params.g.toFixed(1)}<0$, i due beni sono <strong>complementi</strong>. 
+                  All'aumentare del prezzo di uno dei due beni, la curva di domanda per l'altro bene si sposta 
+                  a sinistra. 
+            `"
+            show: params.g < 0
+ 

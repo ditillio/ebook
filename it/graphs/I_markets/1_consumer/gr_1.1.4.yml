@@ -42,16 +42,23 @@ layout:
 
     topGraph: 
       xAxis:
-        title: Unità del bene
         max: 3.3
         ticks: 5
       yAxis:
-        title: Euro
         max: 20
         ticks: 5
 
       objects:
 
+        - Label:
+              coordinates: [3.3, 0]
+              text: "` \\\\text{litri} `"
+              yPixelOffset: 0
+              position: l
+        - Label:
+              coordinates: [0, 20]
+              text: "` \\\\text{euro}  `"
+              xPixelOffset: -5
 
 # price line
         - Line:
@@ -128,16 +135,23 @@ layout:
 
     bottomGraph: 
       xAxis:
-        title: Unità del bene
         max: 3.3
         ticks: 5
       yAxis:
-        title: Euro
         max: 13
         ticks: 5
 
       objects:
 
+        - Label:
+              coordinates: [3.3, 0]
+              text: "` \\\\text{litri} `"
+              yPixelOffset: 0
+              position: l
+        - Label:
+              coordinates: [0, 13]
+              text: "` \\\\text{euro/litro}  `"
+              xPixelOffset: 0
 
 # price line
         - Line:

@@ -28,15 +28,24 @@ layout:
   OneGraphPlusSidebar:
     graph: 
       xAxis:
-        title: Unità del bene
         max: 5.2
         ticks: 4
       yAxis:
-        title: Euro
         max: 550
         ticks: 5
 
       objects:
+
+        - Label:
+                coordinates: [5.2, 0]
+                text: "` \\\\text{unità} `"
+                yPixelOffset: 0
+                xPixelOffset: -5
+                position: l
+        - Label:
+                coordinates: [0, 550]
+                text: "` \\\\text{euro/unità}  `"
+                xPixelOffset: 0
 
 # price line
         - Line:
