@@ -18,8 +18,8 @@ calcs:
 #aspectRatio: 3
 
 layout:
-  TwoVerticalGraphsPlusSidebar:
-    topGraph:
+  TwoHorizontalGraphsPlusSidebar:
+    leftGraph:
       xAxis:
         ticks: 5
         max: 15
@@ -64,7 +64,7 @@ layout:
             vertical: calcs.x1opt.toFixed(1)
           color: Blue
 
-    bottomGraph:
+    rightGraph:
       xAxis:
         ticks: 5
         max: 25

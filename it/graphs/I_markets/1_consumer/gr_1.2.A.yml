@@ -53,19 +53,14 @@ layout:
 
 # marginal utility good 1
       - Point: {coordinates: [1, params.aa1 - 0 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 0 - 0.5 - params.g * params.x2}, color: Red}
-      - Point: {coordinates: [2, params.aa1 - 1 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 1 - 0.5 - params.g * params.x2}, color: Red}
-      - Point: {coordinates: [3, params.aa1 - 2 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 2 - 0.5 - params.g * params.x2}, color: Red}
-      - Point: {coordinates: [4, params.aa1 - 3 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 3 - 0.5 - params.g * params.x2}, color: Red}
+      - Point: {coordinates: [2, params.aa1 - 1 - 0.5 - params.g * params.x2], droplines: {vertical: 2,horizontal: params.aa1 - 1 - 0.5 - params.g * params.x2}, color: Red}
+      - Point: {coordinates: [3, params.aa1 - 2 - 0.5 - params.g * params.x2], droplines: {vertical: 3,horizontal: params.aa1 - 2 - 0.5 - params.g * params.x2}, color: Red}
+      - Point: {coordinates: [4, params.aa1 - 3 - 0.5 - params.g * params.x2], droplines: {vertical: 4,horizontal: params.aa1 - 3 - 0.5 - params.g * params.x2}, color: Red}
       - Point: {coordinates: [1, params.aa1 - 0 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 0 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 0}
-      - Point: {coordinates: [2, params.aa1 - 1 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 1 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 1}
-      - Point: {coordinates: [3, params.aa1 - 2 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 2 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 2}
-      - Point: {coordinates: [4, params.aa1 - 3 - 0.5 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - 3 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 3}
+      - Point: {coordinates: [2, params.aa1 - 1 - 0.5 - params.g * params.x2], droplines: {vertical: 2,horizontal: params.aa1 - 1 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 1}
+      - Point: {coordinates: [3, params.aa1 - 2 - 0.5 - params.g * params.x2], droplines: {vertical: 3,horizontal: params.aa1 - 2 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 2}
+      - Point: {coordinates: [4, params.aa1 - 3 - 0.5 - params.g * params.x2], droplines: {vertical: 4,horizontal: params.aa1 - 3 - 0.5 - params.g * params.x2}, color: Blue, show: params.x1 > 3}
 
-    leftControls:
-      title: Consumo di benzina
-      sliders:
-        - param: x1
-          label: "` X_1 `"
 
     rightGraph:
       xAxis:
@@ -73,7 +68,7 @@ layout:
         ticks: 5
         max: 4.9
       yAxis:
-        max: 11
+        max: 8
         ticks: 10
       objects:
 
@@ -83,31 +78,27 @@ layout:
             xPixelOffset: 10
             position: m
       - Label:
-            coordinates: [0, 11]
+            coordinates: [0, 8]
             text: "` \\\\text{utilità/kg}  `"
             xPixelOffset: 0
 
 # marginal utility good 2
       - Point: {coordinates: [1, params.aa2 - 0 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 0 - 0.5 - params.g * params.x1}, color: Red}
-      - Point: {coordinates: [2, params.aa2 - 1 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 1 - 0.5 - params.g * params.x1}, color: Red}
-      - Point: {coordinates: [3, params.aa2 - 2 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 2 - 0.5 - params.g * params.x1}, color: Red}
-      - Point: {coordinates: [4, params.aa2 - 3 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 3 - 0.5 - params.g * params.x1}, color: Red}
+      - Point: {coordinates: [2, params.aa2 - 1 - 0.5 - params.g * params.x1], droplines: {vertical: 2,horizontal: params.aa2 - 1 - 0.5 - params.g * params.x1}, color: Red}
+      - Point: {coordinates: [3, params.aa2 - 2 - 0.5 - params.g * params.x1], droplines: {vertical: 3,horizontal: params.aa2 - 2 - 0.5 - params.g * params.x1}, color: Red}
+      - Point: {coordinates: [4, params.aa2 - 3 - 0.5 - params.g * params.x1], droplines: {vertical: 4,horizontal: params.aa2 - 3 - 0.5 - params.g * params.x1}, color: Red}
       - Point: {coordinates: [1, params.aa2 - 0 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 0 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 0}
-      - Point: {coordinates: [2, params.aa2 - 1 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 1 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 1}
-      - Point: {coordinates: [3, params.aa2 - 2 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 2 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 2}
-      - Point: {coordinates: [4, params.aa2 - 3 - 0.5 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - 3 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 3}
+      - Point: {coordinates: [2, params.aa2 - 1 - 0.5 - params.g * params.x1], droplines: {vertical: 2,horizontal: params.aa2 - 1 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 1}
+      - Point: {coordinates: [3, params.aa2 - 2 - 0.5 - params.g * params.x1], droplines: {vertical: 3,horizontal: params.aa2 - 2 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 2}
+      - Point: {coordinates: [4, params.aa2 - 3 - 0.5 - params.g * params.x1], droplines: {vertical: 4,horizontal: params.aa2 - 3 - 0.5 - params.g * params.x1}, color: Blue, show: params.x2 > 3}
 
-    rightControls:
-      title: Consumo di mele
-      sliders:
-        - param: x2
-          label: "` X_2 `"
 
 
 
     sidebar:
       controls:
       - title: Utilità marginali e scelta ottima
+        description: Aumentare o diminuire le quantità dei due beni fino a individuare la scelta ottima del consumatore.
         radioGroup:
           param: dp
           options:
@@ -115,25 +106,25 @@ layout:
             - $ P_1 = 6.49 $
             - $ P_1 = 6.99 $
         divs:
-          - html: "` Il prezzo delle mele è $P_2=3.99$ euro/kg. Selezionare qui sopra il prezzo della benzina ($P_1=5.49$, $P_1=6.49$ oppure $P_1=6.99$
-                  euro/litro) e poi aumentare o diminuire le quantità dei due beni fino a individuare la scelta ottima. `"
-          - html: "` BRAVO! `"
-            show: calcs.mup1prev > 0 && calcs.mup2prev > 0 && calcs.mup1 < 0 && calcs.mup2 < 0
+          - html: "` Il prezzo del bene 2 è $P_2=3.99$ euro/kg. Selezionare qui sopra il prezzo del bene 1 ($P_1=5.49$, $P_1=6.49$, oppure $P_1=6.99$). `"
+        sliders:
+          - param: x1
+            label: "` X_1 `"
+          - param: x2
+            label: "` X_2 `"
 
     explanation:
         divs:
           - html: "`  `"
-            show: params.x1 == 0 && params.x2 == 0
           - html: "`  `"
-            show: params.x1 == 0 && params.x2 == 0
           - html: "`  `"
-            show: params.x1 == 0 && params.x2 == 0
-
+          - html: "`  `"
+          - html: "`  `"
           - html: "` Scegliere $X_1=${params.x1}$ e $X_2=${params.x2}$ non massimizza l'utilità del consumatore. `"
             show: calcs.mup1 > 0 or calcs.mup2 > 0
 
           - html: "` <font color=red><strong>BINGO!</strong></font>
-                  Scegliere $X_1=${params.x1}$ e $X_2=${params.x2}$ massimizza l'utilità del consumatore! `"
+                  Scegliere $X_1=${params.x1}$ e $X_2=${params.x2}$ massimizza l'utilità del consumatore. `"
             show: calcs.mup1 < 0 and calcs.mup1prev > 0 and calcs.mup2 < 0 and calcs.mup2prev > 0
 
           - html: "` L'utilità marginale di una unità aggiuntiva del bene 1 è maggiore del suo prezzo:
