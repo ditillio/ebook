@@ -143,12 +143,12 @@ layout:
             show: calcs.mup1 < 0 and calcs.mup1prev > 0
 
           - html: "` L'utilità marginale di una unità aggiuntiva del bene 2 è maggiore del suo prezzo:
-                  $ MU_2-P_2 = ${calcs.mu2} - ${params.p2} = ${calcs.mup2.toFixed(2)}>0$.
+                  $ ${calcs.mu2} - ${params.p2} = ${calcs.mup2.toFixed(2)}>0$.
                   Quindi il consumatore potrebbe aumentare $X_2$ e stare meglio. `"
             show: calcs.mup2 > 0
 
           - html: "` L'utilità marginale dell'ultima unità consumata del bene 2 è minore del suo prezzo:
-                  $ MU_2-P_2 = ${calcs.mu2prev} - ${params.p2} = ${calcs.mup2prev.toFixed(2)}<0$.
+                  $ ${calcs.mu2prev} - ${params.p2} = ${calcs.mup2prev.toFixed(2)}<0$.
                   Quindi il consumatore potrebbe ridurre $X_2$ e stare meglio. `"
             show: calcs.mup2prev < 0
 
