@@ -11,65 +11,76 @@ parts:
     chapters:
       - folder: 1
         title:
+          en: Introduction
+          it: Introduzione
+        sections:
+          - title:
+              en: sec 1.1
+              it: sez 1.1
+          - title:
+              en: sec 1.2
+              it: sez 1.2
+      - folder: 2
+        title:
           en: Consumer theory
           it: Teoria del consumatore
         sections:
           - title:
-              en: Title of Section 1.1
+              en: Title of Section 2.1
               it: Domanda e benessere - Parte I
           - title:
-              en: Title of Section 1.2
+              en: Title of Section 2.2
               it: Scelta ottima del consumatore  
           - title:
-              en: Title of Section 1.3
+              en: Title of Section 2.3
               it: Domanda e benessere - Parte II
           - title:
               en: Sandbox
               it: Sandbox
-      - folder: 2
+      - folder: 3
         title:
           en: Theory of the Firm
           it: Teoria dell'impresa
         sections:
           - title:
-              en: Title of Section 2.1
+              en: Title of Section 3.1
               it: Costi
           - title:
-              en: Title of Section 2.2
+              en: Title of Section 3.2
               it: Massimizzazione del profitto  
           - title:
-              en: Title of Section 2.3
+              en: Title of Section 3.3
               it: Discriminazione di prezzo
-      - folder: 3
+      - folder: 4
         title:
           en: Competition and market equilibrium
           it: Concorrenza ed equilibrio di mercato
         sections:
           - title:
-              en: Title of Section 3.1
+              en: Title of Section 4.1
               it: Cournot
           - title:
-              en: Title of Section 3.2
+              en: Title of Section 4.2
               it: Bertrand  
           - title:
-              en: Title of Section 3.3
+              en: Title of Section 4.3
               it: Beni differenziati
           - title:
-              en: Title of Section 3.4
+              en: Title of Section 4.4
               it: Altro
   - title:
       en: Information
       it: Informazione
     folder: II
     chapters:
-      - folder: 4
+      - folder: 5
         title:
-          en: Title of Chapter 4
-          it: Titolo di Sezione 4
+          en: Title of Chapter 5
+          it: Titolo di Sezione 5
         sections:
           - title:
-              en: Title of Section 4.1
-              it: Titolo di Sezione 4.1
+              en: Title of Section 5.1
+              it: Titolo di Sezione 5.1
           - title:
-              en: Title of Section 4.2
-              it: Titolo di Sezione 4.2 
+              en: Title of Section 5.2
+              it: Titolo di Sezione 5.2 
