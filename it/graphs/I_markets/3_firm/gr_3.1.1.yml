@@ -6,10 +6,6 @@ params:
 - {name: ops, value: 0.2}
 - {name: c, value: 10}
 - {name: d, value: 10}
-- {name: b1, value: 500}
-- {name: b2, value: 200}
-- {name: b3, value: 100}
-- {name: b4, value: 50}
 
 calcs:
   tc1: params.c * 1 + ( params.d / 2) * 1^2

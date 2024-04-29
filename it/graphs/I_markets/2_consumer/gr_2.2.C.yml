@@ -43,7 +43,7 @@ layout:
         max: 11
         ticks: 0
         step: 10
-        title: u
+        title: WTP
       objects:
       - MathboxPlane:
             y: params.y
@@ -124,7 +124,7 @@ layout:
               position: l
         - Label:
               coordinates: [0, 10.3]
-              text: "` \\\\text{utilità}  `"
+              text: "` \\\\text{WTP}  `"
               xPixelOffset: -5
               position: b
         - Point:

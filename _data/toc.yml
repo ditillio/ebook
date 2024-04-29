@@ -44,13 +44,13 @@ parts:
         sections:
           - title:
               en: Title of Section 3.1
-              it: Costi
+              it: Offerta e benessere - Parte I
           - title:
               en: Title of Section 3.2
-              it: Massimizzazione del profitto  
+              it: Scelta ottima dell'impresa
           - title:
               en: Title of Section 3.3
-              it: Discriminazione di prezzo
+              it: Offerta e benessere - Parte II
       - folder: 4
         title:
           en: Competition and market equilibrium

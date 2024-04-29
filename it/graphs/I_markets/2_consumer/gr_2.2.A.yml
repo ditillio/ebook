@@ -4,6 +4,7 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
+- {name: opss, value: 0.3}
 - {name: p1, value: 5.49}
 - {name: p2, value: 3.99, min: 2, max: 4, round: 0.01}
 - {name: g, value: -0.5}
@@ -43,21 +44,31 @@ layout:
         ticks: 10
       objects:
 
+# price line X_1
+      - Line:
+            yIntercept: calcs.pr1
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: P_1
+              x: 4.5
+              position: b
+
       - Label:
             coordinates: [4.9, 0]
-            text: "` \\\\text{litri} `"
+            text: "` \\\\text{pizza} `"
             xPixelOffset: 10
             position: m
       - Label:
             coordinates: [0, 9]
-            text: "` \\\\text{utilità/litro}  `"
+            text: "` \\\\text{utilità/pizza}  `"
             xPixelOffset: 0
 
 # marginal utility good 1
-      - Point: {coordinates: [1, params.aa1 - params.bb1 * 0 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - params.bb1 * 0 - 0.5 * params.bb1 - params.g * params.x2}, color: Red}
-      - Point: {coordinates: [2, params.aa1 - params.bb1 * 1 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 2,horizontal: params.aa1 - params.bb1 * 1 - 0.5 * params.bb1 - params.g * params.x2}, color: Red}
-      - Point: {coordinates: [3, params.aa1 - params.bb1 * 2 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 3,horizontal: params.aa1 - params.bb1 * 2 - 0.5 * params.bb1 - params.g * params.x2}, color: Red}
-      - Point: {coordinates: [4, params.aa1 - params.bb1 * 3 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 4,horizontal: params.aa1 - params.bb1 * 3 - 0.5 * params.bb1 - params.g * params.x2}, color: Red}
+      - Point: {coordinates: [1, params.aa1 - params.bb1 * 0 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - params.bb1 * 0 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, opacity: params.opss}
+      - Point: {coordinates: [2, params.aa1 - params.bb1 * 1 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 2,horizontal: params.aa1 - params.bb1 * 1 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, opacity: params.opss}
+      - Point: {coordinates: [3, params.aa1 - params.bb1 * 2 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 3,horizontal: params.aa1 - params.bb1 * 2 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, opacity: params.opss}
+      - Point: {coordinates: [4, params.aa1 - params.bb1 * 3 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 4,horizontal: params.aa1 - params.bb1 * 3 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, opacity: params.opss}
       - Point: {coordinates: [1, params.aa1 - params.bb1 * 0 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 1,horizontal: params.aa1 - params.bb1 * 0 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, show: params.x1 > 0}
       - Point: {coordinates: [2, params.aa1 - params.bb1 * 1 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 2,horizontal: params.aa1 - params.bb1 * 1 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, show: params.x1 > 1}
       - Point: {coordinates: [3, params.aa1 - params.bb1 * 2 - 0.5 * params.bb1 - params.g * params.x2], droplines: {vertical: 3,horizontal: params.aa1 - params.bb1 * 2 - 0.5 * params.bb1 - params.g * params.x2}, color: Blue, show: params.x1 > 2}
@@ -74,21 +85,31 @@ layout:
         ticks: 10
       objects:
 
+# price line X_2
+      - Line:
+            yIntercept: params.p2
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: P_2
+              x: 4.5
+              position: b
+
       - Label:
             coordinates: [4.9, 0]
-            text: "` \\\\text{kg} `"
+            text: "` \\\\text{birra} `"
             xPixelOffset: 10
             position: m
       - Label:
             coordinates: [0, 7]
-            text: "` \\\\text{utilità/kg}  `"
+            text: "` \\\\text{utilità/birra}  `"
             xPixelOffset: 0
 
 # marginal utility good 2
-      - Point: {coordinates: [1, params.aa2 - params.bb2 * 0 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - params.bb2 * 0 - 0.5 * params.bb2 - params.g * params.x1}, color: Red}
-      - Point: {coordinates: [2, params.aa2 - params.bb2 * 1 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 2,horizontal: params.aa2 - params.bb2 * 1 - 0.5 * params.bb2 - params.g * params.x1}, color: Red}
-      - Point: {coordinates: [3, params.aa2 - params.bb2 * 2 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 3,horizontal: params.aa2 - params.bb2 * 2 - 0.5 * params.bb2 - params.g * params.x1}, color: Red}
-      - Point: {coordinates: [4, params.aa2 - params.bb2 * 3 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 4,horizontal: params.aa2 - params.bb2 * 3 - 0.5 * params.bb2 - params.g * params.x1}, color: Red}
+      - Point: {coordinates: [1, params.aa2 - params.bb2 * 0 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - params.bb2 * 0 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, opacity: params.opss}
+      - Point: {coordinates: [2, params.aa2 - params.bb2 * 1 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 2,horizontal: params.aa2 - params.bb2 * 1 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, opacity: params.opss}
+      - Point: {coordinates: [3, params.aa2 - params.bb2 * 2 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 3,horizontal: params.aa2 - params.bb2 * 2 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, opacity: params.opss}
+      - Point: {coordinates: [4, params.aa2 - params.bb2 * 3 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 4,horizontal: params.aa2 - params.bb2 * 3 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, opacity: params.opss}
       - Point: {coordinates: [1, params.aa2 - params.bb2 * 0 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 1,horizontal: params.aa2 - params.bb2 * 0 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, show: params.x2 > 0}
       - Point: {coordinates: [2, params.aa2 - params.bb2 * 1 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 2,horizontal: params.aa2 - params.bb2 * 1 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, show: params.x2 > 1}
       - Point: {coordinates: [3, params.aa2 - params.bb2 * 2 - 0.5 * params.bb2 - params.g * params.x1], droplines: {vertical: 3,horizontal: params.aa2 - params.bb2 * 2 - 0.5 * params.bb2 - params.g * params.x1}, color: Blue, show: params.x2 > 2}
