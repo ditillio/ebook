@@ -1,6 +1,6 @@
 params:
 - {name: showCS, value: false}
-- {name: p, value: 14, min: 0, max: 20}
+- {name: p, value: 14, min: 0, max: 22}
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
@@ -137,13 +137,13 @@ layout:
       objects:
 
         - Label:
-                coordinates: [5.2, 0]
+                coordinates: [calcs.xoptmax+1, 0]
                 text: "` \\\\text{unità} `"
                 yPixelOffset: 0
                 xPixelOffset: -5
                 position: l
         - Label:
-                coordinates: [0, 550]
+                coordinates: [0, 30]
                 text: "` \\\\text{euro/unità}  `"
                 xPixelOffset: 0
 
