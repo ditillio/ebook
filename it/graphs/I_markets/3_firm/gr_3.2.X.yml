@@ -1,0 +1,87 @@
+params:
+- {name: showCS, value: false}
+- {name: p, value: 25, min: 2, max: 10}
+- {name: op1, value: 0.15}
+- {name: op2, value: 0.1}
+- {name: ops, value: 0.2}
+- {name: opss, value: 0.3}
+- {name: mc1, value: 6}
+- {name: mc2, value: 12}
+- {name: mc3, value: 18}
+- {name: mc4, value: 24}
+- {name: mc5, value: 30}
+- {name: mc6, value: 36}
+- {name: mc7, value: 42}
+- {name: mc8, value: 48}
+- {name: x, value: 0, min: 0, max: 8}
+
+calcs:
+  profit: params.p
+
+layout:
+  OneGraphPlusSidebar:
+
+    graph: 
+      xAxis:
+        max: 8.9
+        ticks: 8
+      yAxis:
+        max: 55
+        ticks: 5
+
+      objects:
+
+        - Label:
+                coordinates: [8.5, 0]
+                text: "` \\\\text{unità} `"
+                yPixelOffset: 0
+                xPixelOffset: -5
+                position: l
+        - Label:
+                coordinates: [0, 55]
+                text: "` \\\\text{euro/unità}  `"
+                xPixelOffset: 0
+
+# price line
+        - Line:
+            yIntercept: params.p
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: P
+              x: 8.5
+              position: b
+            drag:
+              - vertical: p
+
+# marginal C for whole units
+        - Point: {coordinates: [1,params.mc1], r: 4, color: Red, droplines: {horizontal: params.mc1, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [2,params.mc2], r: 4, color: Red, droplines: {horizontal: params.mc2, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [3,params.mc3], r: 4, color: Red, droplines: {horizontal: params.mc3, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [4,params.mc4], r: 4, color: Red, droplines: {horizontal: params.mc4, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [5,params.mc5], r: 4, color: Red, droplines: {horizontal: params.mc5, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [6,params.mc6], r: 4, color: Red, droplines: {horizontal: params.mc6, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [7,params.mc7], r: 4, color: Red, droplines: {horizontal: params.mc7, vertical: }, opacity: params.opss}
+        - Point: {coordinates: [8,params.mc8], r: 4, color: Red, droplines: {horizontal: params.mc8, vertical: }, opacity: params.opss}
+
+        - Point: {coordinates: [1,params.mc1], r: 4, color: Red, droplines: {horizontal: params.mc1, vertical: }, show: params.x > 0}
+        - Point: {coordinates: [2,params.mc2], r: 4, color: Red, droplines: {horizontal: params.mc2, vertical: }, show: params.x > 1}
+        - Point: {coordinates: [3,params.mc3], r: 4, color: Red, droplines: {horizontal: params.mc3, vertical: }, show: params.x > 2}
+        - Point: {coordinates: [4,params.mc4], r: 4, color: Red, droplines: {horizontal: params.mc4, vertical: }, show: params.x > 3}
+        - Point: {coordinates: [5,params.mc5], r: 4, color: Red, droplines: {horizontal: params.mc5, vertical: }, show: params.x > 4}
+        - Point: {coordinates: [6,params.mc6], r: 4, color: Red, droplines: {horizontal: params.mc6, vertical: }, show: params.x > 5}
+        - Point: {coordinates: [7,params.mc7], r: 4, color: Red, droplines: {horizontal: params.mc7, vertical: }, show: params.x > 6}
+        - Point: {coordinates: [8,params.mc8], r: 4, color: Red, droplines: {horizontal: params.mc8, vertical: }, show: params.x > 7}
+
+
+    sidebar:
+      controls:
+      - title: Variazioni di surplus del produttore
+        sliders:
+        - param: x
+          label: X
+        - param: p
+          label: P
+        divs:
+          - html: "` Quando ..  $$    `"
+            show: (params.mc1 > 0)

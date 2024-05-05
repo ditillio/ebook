@@ -227,7 +227,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Beneficio totale, beneficio marginale, e surplus del consumatore
+      - title: Massimizzazione del profitto
         sliders:
         - param: p
           label: P

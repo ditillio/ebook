@@ -7,7 +7,7 @@ params:
 - {name: ops, value: 0.2}
 - {name: beta, value: 0.02, min: 0.01, max: 0.03, round: 0.005}
 - {name: lambda, value: 2, min: 2, max: 2.5, round: 0.1}
-- {name: fc, value: 100, min: 0, max: 200, round: 5}
+- {name: fc, value: 120, min: 0, max: 200, round: 5}
 - {name: w, value: 5, min: 3, max: 7}
 - {name: maxx, value: 100}
 
@@ -172,7 +172,7 @@ layout:
 
     sidebar:
       controls:
-      - title: Beneficio totale, beneficio marginale, e surplus del consumatore
+      - title: Costi dell'impresa
         sliders:
         - param: x
           label: X
