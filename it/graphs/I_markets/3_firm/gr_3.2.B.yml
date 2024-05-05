@@ -1,0 +1,251 @@
+params:
+- {name: showCS, value: false}
+- {name: p, value: 14, min: 0, max: 20}
+- {name: op1, value: 0.15}
+- {name: op2, value: 0.1}
+- {name: ops, value: 0.2}
+- {name: a, value: 1.5}
+- {name: r, value: 3}
+- {name: fc, value: 20}
+
+calcs:
+  xopt: ( params.p / params.a ) ^ ( 1 / (params.r-1) )
+  revenue: calcs.xopt * params.p
+  xoptmax: ( 18 / params.a ) ^ ( 1 / (params.r-1) )
+  revenuemax: calcs.xoptmax * 18
+  variablecost: params.a * (calcs.xopt)^(params.r) / params.r
+  totalcost: params.a * (calcs.xopt)^(params.r) / params.r + params.fc
+  econprofit: calcs.revenue - calcs.variablecost
+  accprofit: calcs.revenue - calcs.totalcost
+  marginalcost: params.a * (calcs.xopt)^(params.r-1)
+  averagevariablecost: params.a * (calcs.xopt)^(params.r-1) / params.r
+  averagetotalcost: params.a * (calcs.xopt)^(params.r-1) / params.r  + params.fc / calcs.xopt
+  cazz: min(params.p,calcs.averagetotalcost)
+
+aspectRatio: 0.7
+
+layout:
+  TwoVerticalGraphsPlusSidebar:
+
+    topGraph: 
+      xAxis:
+        max: calcs.xoptmax+1
+        ticks: 4
+      yAxis:
+        max: calcs.revenuemax + 18
+        ticks: 5
+
+      objects:
+
+        - Label:
+                coordinates: [calcs.xoptmax+1, 0]
+                text: "` \\\\text{unità} `"
+                yPixelOffset: 0
+                xPixelOffset: -5
+                position: l
+        - Label:
+                coordinates: [0, calcs.revenuemax + 17]
+                text: "` \\\\text{euro}  `"
+                xPixelOffset: -3
+
+# revenue
+        - Line:
+            slope: params.p
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: R
+              x: calcs.xoptmax+1
+              position: l
+              bgcolor: none
+              show: params.p !== 11
+# revenue
+        - Line:
+            slope: params.p
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: R
+              x: calcs.xoptmax+1
+              position: bl
+              bgcolor: none
+              show: params.p == 11
+
+# VC curve
+
+        - Curve:
+            fn: params.a * (x)^(params.r) / params.r
+            color: Orange
+            label:
+              text: VC
+              x: calcs.xoptmax+1
+              position: bl
+              bgcolor: none
+            strokeWidth: 1.7
+
+# TC curve
+
+        - Curve:
+            fn: params.a * (x)^(params.r) / params.r + params.fc
+            color: Brown
+            label:
+              text: TC
+              x: calcs.xoptmax+1
+              position: bl
+              bgcolor: none
+            strokeWidth: 1.7
+
+# tangent to TC
+        - Line:
+            point: [calcs.xopt,calcs.totalcost]
+            slope: params.p
+            color: Black
+            lineStyle: dashed
+            strokeWidth: 0.8
+            show: params.p !== 11
+
+# tangent to VC
+        - Line:
+            point: [calcs.xopt,calcs.variablecost]
+            slope: params.p
+            color: Black
+            lineStyle: dashed
+            strokeWidth: 0.8
+
+# dropline optimal x
+        - Segment:
+            a: [calcs.xopt,0]
+            b: [calcs.xopt,calcs.variablecost]
+            color: Black
+            lineStyle: dotted
+            strokeWidth: 1
+
+# profit / loss
+        - Segment: {a: [calcs.xopt,calcs.revenue], b: [calcs.xopt,calcs.totalcost], color: Green, strokeWidth: 5, show: calcs.revenue > calcs.totalcost}
+        - Segment: {a: [calcs.xopt,calcs.revenue], b: [calcs.xopt,calcs.totalcost], color: Red, strokeWidth: 5, show: calcs.revenue < calcs.totalcost}
+        - Segment: {a: [calcs.xopt,calcs.revenue], b: [calcs.xopt,calcs.variablecost], color: Blue, strokeWidth: 5, show: calcs.revenue > calcs.variablecost && calcs.revenue < calcs.totalcost}
+        - Segment: {a: [calcs.xopt,calcs.totalcost], b: [calcs.xopt,calcs.variablecost], color: Blue, strokeWidth: 5, show: calcs.revenue > calcs.variablecost && calcs.revenue > calcs.totalcost}
+
+    bottomGraph: 
+      xAxis:
+        max: calcs.xoptmax+1
+        ticks: 4
+      yAxis:
+        max: 30
+        ticks: 5
+
+      objects:
+
+        - Label:
+                coordinates: [5.2, 0]
+                text: "` \\\\text{unità} `"
+                yPixelOffset: 0
+                xPixelOffset: -5
+                position: l
+        - Label:
+                coordinates: [0, 550]
+                text: "` \\\\text{euro/unità}  `"
+                xPixelOffset: 0
+
+# price line
+        - Line:
+            yIntercept: params.p
+            color: Green
+            strokeWidth: 1.5
+            label:
+              text: P
+              x: calcs.xoptmax+1
+              position: l
+            drag:
+              - vertical: p
+
+# ATC curve
+
+        - Curve:
+            fn: params.a * (x)^(params.r-1) / params.r + params.fc / (x)
+            color: Brown
+            label:
+              text: ATC
+              x: calcs.xoptmax+1
+              position: bl
+              bgcolor: none
+            strokeWidth: 1.7
+
+# AVC curve
+
+        - Curve:
+            fn: params.a * (x)^(params.r-1) / params.r
+            color: Orange
+            label:
+              text: AVC
+              x: calcs.xoptmax+1
+              position: bl
+              bgcolor: none
+            strokeWidth: 1.7
+
+# MC curve
+
+        - Curve:
+            fn: params.a * (x)^(params.r-1)
+            color: Red
+            label:
+              text: MC
+              x: calcs.xoptmax+1
+              position: bl
+              bgcolor: none
+            strokeWidth: 1.7
+
+# dropline optimal x
+        - Segment:
+            a: [calcs.xopt,0]
+            b: [calcs.xopt,1000]
+            color: Black
+            lineStyle: dotted
+            strokeWidth: 1
+
+# droplines ATC and AVC
+        - Segment:
+            a: [0,calcs.averagetotalcost]
+            b: [calcs.xopt,calcs.averagetotalcost]
+            color: Black
+            lineStyle: dotted
+            strokeWidth: 1
+        - Segment:
+            a: [0,calcs.averagevariablecost]
+            b: [calcs.xopt,calcs.averagevariablecost]
+            color: Black
+            lineStyle: dotted
+            strokeWidth: 1
+
+# profit / loss
+        - Area: {fn1: params.p, fn2: calcs.averagetotalcost, fill: Green, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) > 0 }
+        - Area: {fn1: params.p, fn2: calcs.averagetotalcost, fill: Red, opacity: params.ops, min: 0, max: calcs.xopt, show: calcs.accprofit.toFixed(0) < 0 }
+        - Area: {fn1: calcs.cazz, fn2: calcs.averagevariablecost, fill: Blue, opacity: params.ops, min: 0, max: calcs.xopt }
+
+
+
+
+    sidebar:
+      controls:
+      - title: Beneficio totale, beneficio marginale, e surplus del consumatore
+        sliders:
+        - param: p
+          label: P
+        divs:
+        - html: "` Quando il prezzo è $P = ${params.p}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+                  unità. Il massimo profitto contabile (lunghezza del segmento verde nel grafico di sopra, o
+                  area verde nel grafico di sotto) è  $$ R - TC = ${calcs.accprofit.toFixed(1)}$$ 
+                   Il massimo profitto economico (somma delle lunghezze dei segmenti verde e blu nel grafico di sopra, o
+                  somma delle aree verde e blu nel grafico di sotto) è  $$ R - VC = ${calcs.econprofit.toFixed(1)}$$ `"
+          show: (calcs.accprofit.toFixed(0) > 0)
+        - html: "` Quando il prezzo è $P = ${params.p}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+                  unità. Il massimo profitto contabile è  $$ R - TC = 0$$ 
+                   Il massimo profitto economico (somma delle lunghezze dei segmenti verde e blu nel grafico di sopra, o
+                  somma delle aree verde e blu nel grafico di sotto) è  $$ R - VC = ${calcs.econprofit.toFixed(1)}$$ `"
+          show: (calcs.accprofit.toFixed(0) == 0)
+        - html: "` Quando il prezzo è $P = ${params.p}$, la scelta ottima dell'impresa è produrre ${calcs.xopt.toFixed(1)}
+                  unità. Il massimo profitto contabile (negativo della lunghezza del segmento rosso nel grafico di sopra, o
+                  dell'area rossa nel grafico di sotto) è  $$ R - TC = ${calcs.accprofit.toFixed(1)}$$ 
+                   Il massimo profitto economico (lunghezza del segmento blu nel grafico di sopra, o
+                  area blu nel grafico di sotto) è  $$ R - VC = ${calcs.econprofit.toFixed(1)}$$ `"
+          show: (calcs.accprofit.toFixed(0) < 0)

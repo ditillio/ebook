@@ -9,6 +9,14 @@ parts:
       en: Markets and competition
       it: Mercati e concorrenza
     chapters:
+      - folder: 0
+        title:
+          en: Sandbox chapter
+          it: Sandbox chapter
+        sections:
+          - title:
+              en: Sandbox section
+              it: Sandbox section
       - folder: 1
         title:
           en: Introduction
@@ -22,8 +30,8 @@ parts:
               it: sez 1.2
       - folder: 2
         title:
-          en: Consumer theory
-          it: Teoria del consumatore
+          en: Demand
+          it: Domanda
         sections:
           - title:
               en: Title of Section 2.1
@@ -35,52 +43,110 @@ parts:
               en: Title of Section 2.3
               it: Domanda e benessere - Parte II
           - title:
-              en: Sandbox
-              it: Sandbox
+              en: Demand for leisure and supply of labor
+              it: Offerta di lavoro
       - folder: 3
         title:
-          en: Theory of the Firm
-          it: Teoria dell'impresa
+          en: Supply
+          it: Offerta
         sections:
           - title:
               en: Title of Section 3.1
               it: Offerta e benessere - Parte I
           - title:
               en: Title of Section 3.2
-              it: Scelta ottima dell'impresa
+              it: Scelta ottima dell'impresa concorrenziale
           - title:
               en: Title of Section 3.3
               it: Offerta e benessere - Parte II
+          - title:
+              en: Title of Section 3.3
+              it: Domanda di lavoro
       - folder: 4
         title:
-          en: Competition and market equilibrium
-          it: Concorrenza ed equilibrio di mercato
+          en: Equilibrio concorrenziale
+          it: Equilibrio concorrenziale
         sections:
           - title:
               en: Title of Section 4.1
-              it: Cournot
+              it: Sez 4.1
           - title:
               en: Title of Section 4.2
-              it: Bertrand  
+              it: Sez 4.2
           - title:
               en: Title of Section 4.3
-              it: Beni differenziati
+              it: Tassazione e regolamentazione
+      - folder: 5
+        title:
+          en: Monopoly and monopsony
+          it: Monopolio e monopsonio
+        sections:
           - title:
-              en: Title of Section 4.4
-              it: Altro
+              en: Title of Section 5.1
+              it: Sez 5.1
+          - title:
+              en: Title of Section 5.2
+              it: Sez 5.2  
+      - folder: 6
+        title:
+          en: Oligopoly and oligopsony
+          it: Oligopolio e oligopsonio
+        sections:
+          - title:
+              en: Title of Section 6.1
+              it: Cournot
+          - title:
+              en: Title of Section 6.2
+              it: Bertrand  
+          - title:
+              en: Title of Section 6.3
+              it: Beni differenziati
   - title:
       en: Information
       it: Informazione
     folder: II
     chapters:
-      - folder: 5
+      - folder: 7
         title:
-          en: Title of Chapter 5
-          it: Titolo di Sezione 5
+          en: Title of Chapter 7
+          it: Titolo di Capitolo 7
         sections:
           - title:
-              en: Title of Section 5.1
-              it: Titolo di Sezione 5.1
+              en: Title of Section 7.1
+              it: Titolo di Sezione 7.1
           - title:
-              en: Title of Section 5.2
-              it: Titolo di Sezione 5.2 
+              en: Title of Section 7.2
+              it: Titolo di Sezione 7.2
+      - folder: 8
+        title:
+          en: Title of Chapter 8
+          it: Titolo di Capitolo 8
+        sections:
+          - title:
+              en: Title of Section 8.1
+              it: Titolo di Sezione 8.1
+          - title:
+              en: Title of Section 8.2
+              it: Titolo di Sezione 8.2
+      - folder: 9
+        title:
+          en: Title of Chapter 9
+          it: Titolo di Capitolo 9
+        sections:
+          - title:
+              en: Title of Section 9.1
+              it: Titolo di Sezione 9.1
+          - title:
+              en: Title of Section 9.2
+              it: Titolo di Sezione 9.2
+      - folder: 10
+        title:
+          en: Title of Chapter 10
+          it: Titolo di Capitolo 10
+        sections:
+          - title:
+              en: Title of Section 10.1
+              it: Titolo di Sezione 10.1
+          - title:
+              en: Title of Section 10.2
+              it: Titolo di Sezione 10.2
