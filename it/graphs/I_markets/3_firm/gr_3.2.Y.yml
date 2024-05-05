@@ -1,15 +1,15 @@
 params:
 - {name: showCS, value: false}
 - {name: p, value: 14, min: 0, max: 20}
-- {name: x, value: 6, min: 1, max: 9, round: 0.1}
+- {name: x, value: 60, min: 10, max: 90}
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: beta, value: 0.1, min: 0.05, max: 0.15, round: 0.01}
+- {name: beta, value: 0.02, min: 0.01, max: 0.03, round: 0.005}
 - {name: lambda, value: 2, min: 2, max: 2.5, round: 0.1}
-- {name: fc, value: 20, min: 0, max: 40}
-- {name: w, value: 10, min: 8, max: 12}
-- {name: maxx, value: 10}
+- {name: fc, value: 100, min: 0, max: 200, round: 5}
+- {name: w, value: 5, min: 3, max: 7}
+- {name: maxx, value: 100}
 
 calcs:
   tc: params.w * params.beta * (params.x)^(params.lambda) + params.fc
@@ -26,27 +26,27 @@ layout:
 
     topGraph: 
       xAxis:
-        max: 10
+        max: 100
         ticks: 5
       yAxis:
-        max: 150
+        max: 1500
         ticks: 0
 
       objects:
 
         - Label:
-                coordinates: [15, 0]
+                coordinates: [100, 0]
                 text: "` \\\\text{unità} `"
                 yPixelOffset: 0
                 xPixelOffset: -5
                 position: l
         - Label:
-                coordinates: [0, 150]
+                coordinates: [0, 1500]
                 text: "` \\\\text{euro}  `"
                 xPixelOffset: -6
 
 # points
-        - Point: {coordinates: [params.x, calcs.tc], droplines: {vertical: params.x.toFixed(1), horizontal: calcs.tc.toFixed(1)}, color: Brown, r: 4}
+        - Point: {coordinates: [params.x, calcs.tc], droplines: {vertical: params.x, horizontal: calcs.tc.toFixed(1)}, color: Brown, r: 4}
         - Point: {coordinates: [params.x, calcs.vc], droplines: {vertical: , horizontal: calcs.vc.toFixed(1)}, color: Orange, r: 4}
         - Point: {coordinates: [params.x, params.fc], droplines: {vertical: , horizontal: params.fc.toFixed(1)}, color: Gray, r: 4}
 
@@ -57,7 +57,7 @@ layout:
             color: Orange
             label:
               text: VC
-              x: 8
+              x: 80
               position: l
               bgcolor: none
             strokeWidth: 1.7
@@ -69,7 +69,7 @@ layout:
             color: Brown
             label:
               text: TC
-              x: 8
+              x: 80
               position: br
               bgcolor: none
             strokeWidth: 1.7
@@ -89,7 +89,7 @@ layout:
 
     bottomGraph: 
       xAxis:
-        max: 10
+        max: 100
         ticks: 5
       yAxis:
         max: 30
@@ -98,7 +98,7 @@ layout:
       objects:
 
         - Label:
-                coordinates: [15, 0]
+                coordinates: [100, 0]
                 text: "` \\\\text{unità} `"
                 yPixelOffset: 0
                 xPixelOffset: -5
@@ -109,7 +109,7 @@ layout:
                 xPixelOffset: -30
 
 # points
-        - Point: {coordinates: [params.x, calcs.atc], droplines: {vertical: params.x.toFixed(1), horizontal: calcs.atc.toFixed(1)}, color: Brown, r: 4}
+        - Point: {coordinates: [params.x, calcs.atc], droplines: {vertical: params.x, horizontal: calcs.atc.toFixed(1)}, color: Brown, r: 4}
         - Point: {coordinates: [params.x, calcs.avc], droplines: {vertical: , horizontal: calcs.avc.toFixed(1)}, color: Orange, r: 4}
         - Point: {coordinates: [params.x, calcs.afc], droplines: {vertical: , horizontal: calcs.afc.toFixed(1)}, color: Gray, r: 4}
         - Point: {coordinates: [params.x, calcs.mc], droplines: {vertical: , horizontal: calcs.mc.toFixed(1)}, color: Red, r: 4}
@@ -146,7 +146,7 @@ layout:
             label:
               text: AFC
               x: params.maxx-0.5
-              position: bl
+              position: b
               bgcolor: none
             strokeWidth: 1.7
 
@@ -183,7 +183,7 @@ layout:
         - param: fc
           label: FC
         divs:
-        - html: "` Al livello di produzione $ X = ${params.x.toFixed(1)} $ i costi dell'impresa sono
+        - html: "` Al livello di produzione $ X = ${params.x} $ i costi dell'impresa sono
                   $$ TC = ${calcs.tc.toFixed(1)} $$
                   $$ VC = ${calcs.vc.toFixed(1)} $$
                   $$ FC = ${params.fc.toFixed(1)} $$
