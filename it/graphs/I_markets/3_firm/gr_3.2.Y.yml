@@ -5,17 +5,18 @@ params:
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: beta, value: 0.02, min: 0.01, max: 0.03, round: 0.005}
-- {name: lambda, value: 2, min: 2, max: 2.5, round: 0.1}
+- {name: beta, value: 50, min: 20, max: 100, round: 10}
+- {name: lambda, value: 2}
+# lambda = 1 / alpha
 - {name: fc, value: 120, min: 0, max: 200, round: 5}
 - {name: w, value: 5, min: 3, max: 7}
 - {name: maxx, value: 100}
 
 calcs:
-  tc: params.w * params.beta * (params.x)^(params.lambda) + params.fc
-  vc: params.w * params.beta * (params.x)^(params.lambda)
-  mc: params.w * params.beta * params.lambda * (params.x)^(params.lambda-1)
-  avc: params.w * params.beta * (params.x)^(params.lambda-1)
+  tc: params.w * (1/params.beta) * (params.x)^(params.lambda) + params.fc
+  vc: params.w * (1/params.beta) * (params.x)^(params.lambda)
+  mc: params.w * (1/params.beta) * params.lambda * (params.x)^(params.lambda-1)
+  avc: params.w * (1/params.beta) * (params.x)^(params.lambda-1)
   afc: params.fc / params.x
   atc: calcs.avc  + calcs.afc
 
@@ -53,7 +54,7 @@ layout:
 # VC curve
 
         - Curve:
-            fn: params.w * params.beta * (x)^(params.lambda)
+            fn: params.w * (1/params.beta) * (x)^(params.lambda)
             color: Orange
             label:
               text: VC
@@ -65,7 +66,7 @@ layout:
 # TC curve
 
         - Curve:
-            fn: params.w * params.beta * (x)^(params.lambda) + params.fc
+            fn: params.w * (1/params.beta) * (x)^(params.lambda) + params.fc
             color: Brown
             label:
               text: TC
@@ -117,7 +118,7 @@ layout:
 # ATC curve
 
         - Curve:
-            fn: params.w * params.beta * (x)^(params.lambda-1) + params.fc / (x)
+            fn: params.w * (1/params.beta) * (x)^(params.lambda-1) + params.fc / (x)
             color: Brown
             label:
               text: ATC
@@ -129,7 +130,7 @@ layout:
 # AVC curve
 
         - Curve:
-            fn: params.w * params.beta * (x)^(params.lambda-1)
+            fn: params.w * (1/params.beta) * (x)^(params.lambda-1)
             color: Orange
             label:
               text: AVC
@@ -153,7 +154,7 @@ layout:
 # MC curve
 
         - Curve:
-            fn: params.w * params.beta * params.lambda * (x)^(params.lambda-1)
+            fn: params.w * (1/params.beta) * params.lambda * (x)^(params.lambda-1)
             color: Red
             label:
               text: MC

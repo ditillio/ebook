@@ -1,0 +1,66 @@
+params:
+- {name: showCS, value: false}
+- {name: op1, value: 0.15}
+- {name: op2, value: 0.1}
+- {name: ops, value: 0.2}
+- {name: beta, value: 1, min: 1, max: 1.5, round: 0.1}
+- {name: a, value: 0.5, min: 0.5, max: 1, round: 0.1}
+- {name: l, value: 3, min: 0, max: 6, round: 0.1}
+
+calcs:
+  x: ((params.beta)*(params.l))^(params.a)
+
+#aspectRatio: 0.7
+
+layout:
+  OneGraphPlusSidebar:
+
+    graph: 
+      xAxis:
+        max: 6
+        ticks: 5
+      yAxis:
+        max: 10
+        ticks: 0
+
+      objects:
+
+        - Label:
+                coordinates: [6, 0]
+                text: "` \\\\text{lavoro} `"
+                yPixelOffset: 0
+                xPixelOffset: -5
+                position: l
+        - Label:
+                coordinates: [0, 10]
+                text: "` \\\\text{output}  `"
+                xPixelOffset: -6
+
+# points
+        - Point: {coordinates: [params.l, calcs.x], droplines: {vertical: params.l.toFixed(1), horizontal: calcs.x.toFixed(1)}, color: Blue, r: 4}
+
+# production function
+
+        - Curve:
+            fn: ((params.beta)*(x))^(params.a)
+            color: Blue
+            label:
+              text: X
+              x: 48
+              position: b
+              bgcolor: none
+            strokeWidth: 1.7
+
+    sidebar:
+      controls:
+      - title: Funzione di produzione dell'impresa
+        sliders:
+        - param: l
+          label: L
+        - param: beta
+          label: \beta
+        - param: a
+          label: \alpha
+        divs:
+        - html: "` Quando  ...  `"
+          show: params.a > 0
