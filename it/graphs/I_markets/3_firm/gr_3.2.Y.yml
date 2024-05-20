@@ -1,24 +1,24 @@
 params:
 - {name: showCS, value: false}
 - {name: p, value: 14, min: 0, max: 20}
-- {name: x, value: 60, min: 10, max: 90}
+- {name: x, value: 64, min: 10, max: 90}
 - {name: op1, value: 0.15}
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
-- {name: beta, value: 50, min: 20, max: 100, round: 10}
-- {name: lambda, value: 2}
-# lambda = 1 / alpha
-- {name: fc, value: 120, min: 0, max: 200, round: 5}
-- {name: w, value: 5, min: 3, max: 7}
+- {name: alpha, value: 64, min: 36, max: 100}
+- {name: beta, value: 2, min: 1, max: 1000}
+- {name: fc, value: 200, min: 120, max: 200, round: 5}
+- {name: w, value: 8, min: 6, max: 10}
 - {name: maxx, value: 100}
 
 calcs:
-  tc: params.w * (1/params.beta) * (params.x)^(params.lambda) + params.fc
-  vc: params.w * (1/params.beta) * (params.x)^(params.lambda)
-  mc: params.w * (1/params.beta) * params.lambda * (params.x)^(params.lambda-1)
-  avc: params.w * (1/params.beta) * (params.x)^(params.lambda-1)
-  afc: params.fc / params.x
-  atc: calcs.avc  + calcs.afc
+  minavc: (params.w / params.beta)
+  tc: (params.w) * ( (1/params.alpha) * (params.x)^2 + (1/params.beta) * (params.x) ) + params.fc
+  vc: (params.w) * ( (1/params.alpha) * (params.x)^2 + (1/params.beta) * (params.x) )
+  mc: (params.w) * ( 2 * (1/params.alpha) * (params.x) + (1/params.beta) )
+  avc: (params.w) * ( (1/params.alpha) * (params.x) + (1/params.beta) )
+  afc: (params.fc) / (params.x)
+  atc: (calcs.avc) + (calcs.afc)
 
 aspectRatio: 0.7
 
@@ -54,7 +54,7 @@ layout:
 # VC curve
 
         - Curve:
-            fn: params.w * (1/params.beta) * (x)^(params.lambda)
+            fn: (params.w) * ( (1/params.alpha) * (x)^2 + (1/params.beta) * (x) )
             color: Orange
             label:
               text: VC
@@ -66,7 +66,7 @@ layout:
 # TC curve
 
         - Curve:
-            fn: params.w * (1/params.beta) * (x)^(params.lambda) + params.fc
+            fn: (params.w) * ( (1/params.alpha) * (x)^2 + (1/params.beta) * (x) ) + params.fc
             color: Brown
             label:
               text: TC
@@ -115,10 +115,12 @@ layout:
         - Point: {coordinates: [params.x, calcs.afc], droplines: {vertical: , horizontal: calcs.afc.toFixed(1)}, color: Gray, r: 4}
         - Point: {coordinates: [params.x, calcs.mc], droplines: {vertical: , horizontal: calcs.mc.toFixed(1)}, color: Red, r: 4}
 
+        - Point: {coordinates: [0, calcs.minavc], droplines: {horizontal: calcs.minavc.toFixed(2)}, color: Red, r: 0.001}
+
 # ATC curve
 
         - Curve:
-            fn: params.w * (1/params.beta) * (x)^(params.lambda-1) + params.fc / (x)
+            fn: (params.w) * ( (1/params.alpha) * (x) + (1/params.beta) ) + params.fc / (x)
             color: Brown
             label:
               text: ATC
@@ -130,7 +132,7 @@ layout:
 # AVC curve
 
         - Curve:
-            fn: params.w * (1/params.beta) * (x)^(params.lambda-1)
+            fn: (params.w) * ( (1/params.alpha) * (x) + (1/params.beta) )
             color: Orange
             label:
               text: AVC
@@ -154,7 +156,7 @@ layout:
 # MC curve
 
         - Curve:
-            fn: params.w * (1/params.beta) * params.lambda * (x)^(params.lambda-1)
+            fn: (params.w) * ( 2 * (1/params.alpha) * (x) + (1/params.beta) )
             color: Red
             label:
               text: MC
@@ -177,6 +179,8 @@ layout:
         sliders:
         - param: x
           label: X
+        - param: alpha
+          label: \alpha
         - param: beta
           label: \beta
         - param: w

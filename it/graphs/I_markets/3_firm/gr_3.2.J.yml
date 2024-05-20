@@ -4,12 +4,10 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 - {name: alpha, value: 100, min: 20, max: 280}
-- {name: beta, value: 2, min: 1, max: 1000}
 - {name: l, value: 4, min: 0, max: 6, round: 0.1}
 
 calcs:
-  ab: (params.beta)/(params.alpha)
-  x: ( ( (1/params.beta)^2 + 4*(params.l)*(1/params.alpha) )^(1/2) - (1/params.beta) ) / ( (1/params.alpha) * 2 )
+  x: ((params.l)*(params.alpha))^(1/2)
 
 #aspectRatio: 0.7
 
@@ -49,8 +47,7 @@ layout:
 # production function
 
         - Curve:
-            fn: (1/params.beta)*(y)+(1/params.alpha)*(y)^2
-            ind: y
+            fn: ((x)*(params.alpha))^(1/2)
             color: Blue
             label:
               text: X
@@ -66,8 +63,6 @@ layout:
           label: L
         - param: alpha
           label: \alpha
-        - param: beta
-          label: \beta
         divs:
         - html: "` I parametri $\\\\alpha$ e $\\\\beta$ sono indici della produttività del lavoro.
                 Aumentando $\\\\alpha$ o $\\\\beta$ (o entrambi), la quantità di output ($X$) a 

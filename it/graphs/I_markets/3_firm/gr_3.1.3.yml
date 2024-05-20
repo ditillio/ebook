@@ -5,6 +5,7 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 - {name: opss, value: 0.3}
+- {name: opps, value: 0.5}
 - {name: numa, value: 70, min: 40, max: 100, round: 10}
 - {name: numb, value: 70, min: 40, max: 100, round: 10}
 - {name: c, value: 10}
@@ -57,14 +58,14 @@ layout:
             position: b
           drag:
             - vertical: p
-      - Point: {coordinates: [1,calcs.mc1], color: Red, droplines: {horizontal: calcs.mc1, vertical: }}
-      - Point: {coordinates: [2,calcs.mc2], color: Red, droplines: {horizontal: calcs.mc2, vertical: }}
-      - Point: {coordinates: [3,calcs.mc3], color: Red, droplines: {horizontal: calcs.mc3, vertical: }}
-      - Point: {coordinates: [4,calcs.mc4], color: Red, droplines: {horizontal: calcs.mc4, vertical: }}
-      - Area: {fn1: params.p, fn2: calcs.mc1, fill: Red, opacity: params.opss, min: 0, max: 1, show: params.p > calcs.mc1 }
-      - Area: {fn1: params.p, fn2: calcs.mc2, fill: Red, opacity: params.opss, min: 1, max: 2, show: params.p > calcs.mc2 }
-      - Area: {fn1: params.p, fn2: calcs.mc3, fill: Red, opacity: params.opss, min: 2, max: 3, show: params.p > calcs.mc3 }
-      - Area: {fn1: params.p, fn2: calcs.mc4, fill: Red, opacity: params.opss, min: 3, max: 4, show: params.p > calcs.mc4 }
+      - Point: {coordinates: [1,calcs.mc1], r: 4, color: Red, droplines: {horizontal: calcs.mc1, vertical: }}
+      - Point: {coordinates: [2,calcs.mc2], r: 4, color: Red, droplines: {horizontal: calcs.mc2, vertical: }}
+      - Point: {coordinates: [3,calcs.mc3], r: 4, color: Red, droplines: {horizontal: calcs.mc3, vertical: }}
+      - Point: {coordinates: [4,calcs.mc4], r: 4, color: Red, droplines: {horizontal: calcs.mc4, vertical: }}
+      - Area: {fn1: params.p, fn2: calcs.mc1, fill: GreenYellow, opacity: params.opps, min: 0, max: 1, show: params.p > calcs.mc1 }
+      - Area: {fn1: params.p, fn2: calcs.mc2, fill: GreenYellow, opacity: params.opps, min: 1, max: 2, show: params.p > calcs.mc2 }
+      - Area: {fn1: params.p, fn2: calcs.mc3, fill: GreenYellow, opacity: params.opps, min: 2, max: 3, show: params.p > calcs.mc3 }
+      - Area: {fn1: params.p, fn2: calcs.mc4, fill: GreenYellow, opacity: params.opps, min: 3, max: 4, show: params.p > calcs.mc4 }
 
 
     leftControls:
@@ -103,14 +104,14 @@ layout:
             position: b
           drag:
             - vertical: p
-      - Point: {coordinates: [1,params.mc1b], color: Red, droplines: {horizontal: params.mc1b, vertical: }}
-      - Point: {coordinates: [2,params.mc2b], color: Red, droplines: {horizontal: params.mc2b, vertical: }}
-      - Point: {coordinates: [3,params.mc3b], color: Red, droplines: {horizontal: params.mc3b, vertical: }}
-      - Point: {coordinates: [4,params.mc4b], color: Red, droplines: {horizontal: params.mc4b, vertical: }}
-      - Area: {fn1: params.p, fn2: params.mc1b, fill: Red, opacity: params.opss, min: 0, max: 1, show: params.p > params.mc1b }
-      - Area: {fn1: params.p, fn2: params.mc2b, fill: Red, opacity: params.opss, min: 1, max: 2, show: params.p > params.mc2b }
-      - Area: {fn1: params.p, fn2: params.mc3b, fill: Red, opacity: params.opss, min: 2, max: 3, show: params.p > params.mc3b }
-      - Area: {fn1: params.p, fn2: params.mc4b, fill: Red, opacity: params.opss, min: 3, max: 4, show: params.p > params.mc4b }
+      - Point: {coordinates: [1,params.mc1b], r: 4, color: Red, droplines: {horizontal: params.mc1b, vertical: }}
+      - Point: {coordinates: [2,params.mc2b], r: 4, color: Red, droplines: {horizontal: params.mc2b, vertical: }}
+      - Point: {coordinates: [3,params.mc3b], r: 4, color: Red, droplines: {horizontal: params.mc3b, vertical: }}
+      - Point: {coordinates: [4,params.mc4b], r: 4, color: Red, droplines: {horizontal: params.mc4b, vertical: }}
+      - Area: {fn1: params.p, fn2: params.mc1b, fill: GreenYellow, opacity: params.opps, min: 0, max: 1, show: params.p > params.mc1b }
+      - Area: {fn1: params.p, fn2: params.mc2b, fill: GreenYellow, opacity: params.opps, min: 1, max: 2, show: params.p > params.mc2b }
+      - Area: {fn1: params.p, fn2: params.mc3b, fill: GreenYellow, opacity: params.opps, min: 2, max: 3, show: params.p > params.mc3b }
+      - Area: {fn1: params.p, fn2: params.mc4b, fill: GreenYellow, opacity: params.opps, min: 3, max: 4, show: params.p > params.mc4b }
 
     middleControls:
       title: Domanda individuale gruppo B
@@ -149,26 +150,26 @@ layout:
             position: b
           drag:
             - vertical: p
-      - Point: {coordinates: [params.numb,params.mc1b], color: Red, droplines: {horizontal: params.mc1b, vertical: }}
-      - Point: {coordinates: [params.numa+params.numb,calcs.mc1], color: Red, droplines: {horizontal: calcs.mc1, vertical: }}
-      - Point: {coordinates: [params.numa+2*params.numb,params.mc2b], color: Red, droplines: {horizontal: params.mc2b, vertical: }}
-      - Point: {coordinates: [(2*params.numa)+(2*params.numb),calcs.mc2], color: Red, droplines: {horizontal: calcs.mc2, vertical: }}
-      - Point: {coordinates: [(2*params.numa)+(3*params.numb),params.mc3b], color: Red, droplines: {horizontal: params.mc3b, vertical: }}
-      - Point: {coordinates: [(3*params.numa)+(3*params.numb),calcs.mc3], color: Red, droplines: {horizontal: calcs.mc3, vertical: }}
-      - Point: {coordinates: [(3*params.numa)+(4*params.numb),params.mc4b], color: Red, droplines: {horizontal: params.mc4b, vertical: }}
-      - Point: {coordinates: [(4*params.numa)+(4*params.numb),calcs.mc4], color: Red, droplines: {horizontal: calcs.mc4, vertical: }}
+      - Point: {coordinates: [params.numb,params.mc1b], r: 4, color: Red, droplines: {horizontal: params.mc1b, vertical: }}
+      - Point: {coordinates: [params.numa+params.numb,calcs.mc1], r: 4, color: Red, droplines: {horizontal: calcs.mc1, vertical: }}
+      - Point: {coordinates: [params.numa+2*params.numb,params.mc2b], r: 4, color: Red, droplines: {horizontal: params.mc2b, vertical: }}
+      - Point: {coordinates: [(2*params.numa)+(2*params.numb),calcs.mc2], r: 4, color: Red, droplines: {horizontal: calcs.mc2, vertical: }}
+      - Point: {coordinates: [(2*params.numa)+(3*params.numb),params.mc3b], r: 4, color: Red, droplines: {horizontal: params.mc3b, vertical: }}
+      - Point: {coordinates: [(3*params.numa)+(3*params.numb),calcs.mc3], r: 4, color: Red, droplines: {horizontal: calcs.mc3, vertical: }}
+      - Point: {coordinates: [(3*params.numa)+(4*params.numb),params.mc4b], r: 4, color: Red, droplines: {horizontal: params.mc4b, vertical: }}
+      - Point: {coordinates: [(4*params.numa)+(4*params.numb),calcs.mc4], r: 4, color: Red, droplines: {horizontal: calcs.mc4, vertical: }}
 
 
 
 # producer surplus
-      - Area: {fn1: params.p, fn2: params.mc1b, fill: Red, opacity: params.opss, min: 0, max: params.numb, show: params.p > params.mc1b }
-      - Area: {fn1: params.p, fn2: calcs.mc1, fill: Red, opacity: params.opss, min: params.numb, max: params.numa+params.numb, show: params.p > calcs.mc1 }
-      - Area: {fn1: params.p, fn2: params.mc2b, fill: Red, opacity: params.opss, min: params.numa+params.numb, max: (params.numa)+(2*params.numb), show: params.p > params.mc2b }
-      - Area: {fn1: params.p, fn2: calcs.mc2, fill: Red, opacity: params.opss, min: (params.numa)+(2*params.numb), max: (2*params.numa)+(2*params.numb), show: params.p > calcs.mc2 }
-      - Area: {fn1: params.p, fn2: params.mc3b, fill: Red, opacity: params.opss, min: (2*params.numa)+(2*params.numb), max: (2*params.numa)+(3*params.numb), show: params.p > params.mc3b }
-      - Area: {fn1: params.p, fn2: calcs.mc3, fill: Red, opacity: params.opss, min: (2*params.numa)+(3*params.numb), max: (3*params.numa)+(3*params.numb), show: params.p > calcs.mc3 }
-      - Area: {fn1: params.p, fn2: params.mc4b, fill: Red, opacity: params.opss, min: (3*params.numa)+(3*params.numb), max: (3*params.numa)+(4*params.numb), show: params.p > params.mc4b }
-      - Area: {fn1: params.p, fn2: calcs.mc4, fill: Red, opacity: params.opss, min: (3*params.numa)+(4*params.numb), max: (4*params.numa)+(4*params.numb), show: params.p > calcs.mc4 }
+      - Area: {fn1: params.p, fn2: params.mc1b, fill: GreenYellow, opacity: params.opps, min: 0, max: params.numb, show: params.p > params.mc1b }
+      - Area: {fn1: params.p, fn2: calcs.mc1, fill: GreenYellow, opacity: params.opps, min: params.numb, max: params.numa+params.numb, show: params.p > calcs.mc1 }
+      - Area: {fn1: params.p, fn2: params.mc2b, fill: GreenYellow, opacity: params.opps, min: params.numa+params.numb, max: (params.numa)+(2*params.numb), show: params.p > params.mc2b }
+      - Area: {fn1: params.p, fn2: calcs.mc2, fill: GreenYellow, opacity: params.opps, min: (params.numa)+(2*params.numb), max: (2*params.numa)+(2*params.numb), show: params.p > calcs.mc2 }
+      - Area: {fn1: params.p, fn2: params.mc3b, fill: GreenYellow, opacity: params.opps, min: (2*params.numa)+(2*params.numb), max: (2*params.numa)+(3*params.numb), show: params.p > params.mc3b }
+      - Area: {fn1: params.p, fn2: calcs.mc3, fill: GreenYellow, opacity: params.opps, min: (2*params.numa)+(3*params.numb), max: (3*params.numa)+(3*params.numb), show: params.p > calcs.mc3 }
+      - Area: {fn1: params.p, fn2: params.mc4b, fill: GreenYellow, opacity: params.opps, min: (3*params.numa)+(3*params.numb), max: (3*params.numa)+(4*params.numb), show: params.p > params.mc4b }
+      - Area: {fn1: params.p, fn2: calcs.mc4, fill: GreenYellow, opacity: params.opps, min: (3*params.numa)+(4*params.numb), max: (4*params.numa)+(4*params.numb), show: params.p > calcs.mc4 }
 
     rightControls:
       title: Domanda di mercato

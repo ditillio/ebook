@@ -52,13 +52,10 @@ parts:
         sections:
           - title:
               en: Title of Section 3.1
-              it: Offerta e benessere - Parte I
+              it: Offerta e benessere
           - title:
               en: Title of Section 3.2
               it: Scelta ottima dell'impresa concorrenziale
-          - title:
-              en: Title of Section 3.3
-              it: Offerta e benessere - Parte II
           - title:
               en: Title of Section 3.3
               it: Domanda di lavoro
@@ -75,18 +72,21 @@ parts:
               it: Sez 4.2
           - title:
               en: Title of Section 4.3
-              it: Tassazione e regolamentazione
+              it: Sez 4.3
       - folder: 5
         title:
           en: Monopoly and monopsony
           it: Monopolio e monopsonio
         sections:
           - title:
-              en: Title of Section 5.1
-              it: Sez 5.1
+              en: Monopolist's optimal choice
+              it: Scelta ottima del monopolista
           - title:
-              en: Title of Section 5.2
-              it: Sez 5.2  
+              en: Price discrimination
+              it: Discriminazione di prezzo
+          - title:
+              en: Monopsony
+              it: Monopsonio
       - folder: 6
         title:
           en: Oligopoly and oligopsony
@@ -101,15 +101,10 @@ parts:
           - title:
               en: Title of Section 6.3
               it: Oligopsonio
-  - title:
-      en: Information
-      it: Informazione
-    folder: II
-    chapters:
       - folder: 7
         title:
           en: Title of Chapter 7
-          it: Titolo di Capitolo 7
+          it: Tassazione e regolamentazione
         sections:
           - title:
               en: Title of Section 7.1
@@ -117,6 +112,11 @@ parts:
           - title:
               en: Title of Section 7.2
               it: Titolo di Sezione 7.2
+  - title:
+      en: Information
+      it: Informazione
+    folder: II
+    chapters:
       - folder: 8
         title:
           en: Title of Chapter 8
@@ -150,3 +150,25 @@ parts:
           - title:
               en: Title of Section 10.2
               it: Titolo di Sezione 10.2
+      - folder: 11
+        title:
+          en: Title of Chapter 11
+          it: Titolo di Capitolo 11
+        sections:
+          - title:
+              en: Title of Section 11.1
+              it: Titolo di Sezione 11.1
+          - title:
+              en: Title of Section 11.2
+              it: Titolo di Sezione 11.2
+      - folder: 12
+        title:
+          en: Title of Chapter 12
+          it: Titolo di Capitolo 12
+        sections:
+          - title:
+              en: Title of Section 12.1
+              it: Titolo di Sezione 12.1
+          - title:
+              en: Title of Section 12.2
+              it: Titolo di Sezione 12.2
