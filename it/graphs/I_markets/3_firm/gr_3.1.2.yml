@@ -6,6 +6,7 @@ params:
 - {name: op2, value: 0.1}
 - {name: ops, value: 0.2}
 - {name: opss, value: 0.3}
+- {name: opps, value: 0.5}
 - {name: c, value: 10}
 - {name: d, value: 10}
 
@@ -83,18 +84,18 @@ layout:
               - vertical: p2
 
 # marginal C for whole units
-        - Point: {coordinates: [1,calcs.mc1], color: Red, droplines: {horizontal: calcs.mc1, vertical: }}
-        - Point: {coordinates: [2,calcs.mc2], color: Red, droplines: {horizontal: calcs.mc2, vertical: }}
-        - Point: {coordinates: [3,calcs.mc3], color: Red, droplines: {horizontal: calcs.mc3, vertical: }}
-        - Point: {coordinates: [4,calcs.mc4], color: Red, droplines: {horizontal: calcs.mc4, vertical: }}
-        - Point: {coordinates: [5,calcs.mc5], color: Red, droplines: {horizontal: calcs.mc5, vertical: }}
+        - Point: {coordinates: [1,calcs.mc1], r: 5, color: Red, droplines: {horizontal: calcs.mc1, vertical: }}
+        - Point: {coordinates: [2,calcs.mc2], r: 5, color: Red, droplines: {horizontal: calcs.mc2, vertical: }}
+        - Point: {coordinates: [3,calcs.mc3], r: 5, color: Red, droplines: {horizontal: calcs.mc3, vertical: }}
+        - Point: {coordinates: [4,calcs.mc4], r: 5, color: Red, droplines: {horizontal: calcs.mc4, vertical: }}
+        - Point: {coordinates: [5,calcs.mc5], r: 5, color: Red, droplines: {horizontal: calcs.mc5, vertical: }}
 
-# producer surplus red
-        - Area: {fn1: calcs.pmin, fn2: calcs.mc1, fill: Red, opacity: params.opss, min: 0, max: 1, show: calcs.pmin > calcs.mc1 }
-        - Area: {fn1: calcs.pmin, fn2: calcs.mc2, fill: Red, opacity: params.opss, min: 1, max: 2, show: calcs.pmin > calcs.mc2 }
-        - Area: {fn1: calcs.pmin, fn2: calcs.mc3, fill: Red, opacity: params.opss, min: 2, max: 3, show: calcs.pmin > calcs.mc3 }
-        - Area: {fn1: calcs.pmin, fn2: calcs.mc4, fill: Red, opacity: params.opss, min: 3, max: 4, show: calcs.pmin > calcs.mc4 }
-        - Area: {fn1: calcs.pmin, fn2: calcs.mc5, fill: Red, opacity: params.opss, min: 4, max: 5, show: calcs.pmin > calcs.mc5 }
+# producer surplus green
+        - Area: {fn1: calcs.pmin, fn2: calcs.mc1, fill: GreenYellow, opacity: params.opps, min: 0, max: 1, show: calcs.pmin > calcs.mc1 }
+        - Area: {fn1: calcs.pmin, fn2: calcs.mc2, fill: GreenYellow, opacity: params.opps, min: 1, max: 2, show: calcs.pmin > calcs.mc2 }
+        - Area: {fn1: calcs.pmin, fn2: calcs.mc3, fill: GreenYellow, opacity: params.opps, min: 2, max: 3, show: calcs.pmin > calcs.mc3 }
+        - Area: {fn1: calcs.pmin, fn2: calcs.mc4, fill: GreenYellow, opacity: params.opps, min: 3, max: 4, show: calcs.pmin > calcs.mc4 }
+        - Area: {fn1: calcs.pmin, fn2: calcs.mc5, fill: GreenYellow, opacity: params.opps, min: 4, max: 5, show: calcs.pmin > calcs.mc5 }
 
 # variation orange
         - Area: {fn1: params.p2, fn2: calcs.maxpmc1, fill: orange, opacity: params.opss, min: 0, max: 1, show: params.p2 > params.p && params.p2 > calcs.mc1}
@@ -119,14 +120,14 @@ layout:
         - param: p2
           label: P'
         divs:
-          - html: "`Quando il prezzo è $P=${params.p}$ il surplus del produttore è pari all'area rossa, ovvero $ ${calcs.ps}$. 
+          - html: "`Quando il prezzo è $P=${params.p}$ il surplus del produttore è pari all'area verde, ovvero $ ${calcs.ps}$. 
                   Quando il prezzo aumenta a $P'=${params.p2}$, il surplus del produttore è pari alla 
-                  somma delle aree rossa e arancione, ovvero $ ${calcs.ps2}$. L'area arancione, quindi, 
+                  somma delle aree verde e arancione, ovvero $ ${calcs.ps2}$. L'area arancione, quindi, 
                   è la variazione di surplus del produttore dovuta all'aumento del prezzo:
                   $$  ${calcs.ps2}-${calcs.ps}=${calcs.ps2-calcs.ps} $$    `"
             show: (params.p2 > params.p) 
-          - html: "`Quando il prezzo è $P=${params.p}$ il surplus del consumatore è pari alla somma delle aree rossa e viola, ovvero $ ${calcs.ps}$. 
-                  Quando il prezzo si riduce a $P'=${params.p2}$, il surplus del produttore è pari all'area rossa, ovvero $ ${calcs.ps2}$. 
+          - html: "`Quando il prezzo è $P=${params.p}$ il surplus del consumatore è pari alla somma delle aree verde e viola, ovvero $ ${calcs.ps}$. 
+                  Quando il prezzo si riduce a $P'=${params.p2}$, il surplus del produttore è pari all'area verde, ovvero $ ${calcs.ps2}$. 
                   Il negativo dell'area viola, quindi, è la variazione di surplus del produttore dovuta alla riduzione del prezzo:
                   $$  ${calcs.ps2}-${calcs.ps}=${calcs.ps2-calcs.ps} $$    `"
             show: (params.p2 < params.p) 

@@ -69849,8 +69849,7 @@ var KG;
                 showNumber: true
             });
             // define constant and updatable properties
-            KG.setProperties(def, 'constants', ['noAxis', 'label', 'digits']);
-            KG.setProperties(def, 'updatables', ['showNumber']);
+            KG.setProperties(def, 'constants', ['noAxis', 'showNumber']);
             _this = _super.call(this, def) || this;
             // calculate maximum number of digits
             var slider = _this;
@@ -69883,29 +69882,35 @@ var KG;
             function inputUpdate() {
                 slider.model.updateParam(slider.param, +this.value);
             }
-            slider.numberCell = slider.rootElement.append('td')
+            var numberCell = slider.rootElement.append('td')
                 .style('padding', '0px')
                 .style('margin', '0px')
                 .style('border', 'none');
-            slider.numberInput = slider.numberCell.append('input')
-                .attr('type', 'number')
-                .attr('min', param.min)
-                .attr('max', param.max)
-                .attr('step', param.round)
-                .style('font-size', '14pt')
-                .style('border', 'none')
-                .style('background', 'none')
-                .style('font-family', 'KaTeX_Main')
-                .style('margin', '0px')
-                .style('padding-top', '0px')
-                .style('padding-bottom', '0px');
-            slider.numberInput.on("blur", inputUpdate);
-            slider.numberInput.on("click", inputUpdate);
-            slider.numberInput.on("keyup", function () {
-                if (event['keyCode'] == 13) {
-                    slider.model.updateParam(slider.param, +this.value);
-                }
-            });
+            if (slider.showNumber) {
+                slider.numberInput = numberCell.append('input')
+                    .attr('type', 'number')
+                    .attr('min', param.min)
+                    .attr('max', param.max)
+                    .attr('step', param.round)
+                    .style('font-size', '14pt')
+                    .style('border', 'none')
+                    .style('background', 'none')
+                    .style('font-family', 'KaTeX_Main')
+                    .style('margin', '0px')
+                    .style('padding-top', '0px')
+                    .style('padding-bottom', '0px')
+                    .style('width', '100%');
+                slider.numberInput.on("blur", inputUpdate);
+                slider.numberInput.on("click", inputUpdate);
+                slider.numberInput.on("keyup", function () {
+                    if (event['keyCode'] == 13) {
+                        slider.model.updateParam(slider.param, +this.value);
+                    }
+                });
+            }
+            else {
+                numberCell.style('width', '10px');
+            }
             var rangeCell = slider.rootElement.append('td')
                 .style('padding', '0px')
                 .style('margin', '0px')
@@ -69927,13 +69932,9 @@ var KG;
             if (slider.showNumber) {
                 katex.render(slider.label + " = ", slider.labelElement.node());
                 slider.numberInput.property('value', slider.value.toFixed(slider.model.getParam(slider.param).precision));
-                slider.numberInput.style('width', 20 + slider.digits * 10 + "px");
-                slider.numberInput.style('display', 'inline-block');
             }
             else {
                 katex.render(slider.label, slider.labelElement.node());
-                slider.numberCell.style('width', '10px');
-                slider.numberInput.style('display', 'none');
             }
             slider.rangeInput.property('value', slider.value);
             return slider;
@@ -70049,7 +70050,7 @@ var KG;
             if (controls.sliders.length > 0) {
                 var sliderTable_1 = controls.rootElement.append('table').style('padding', '10px').style('width', '100%').style('margin', '0px 0px 10px 0px');
                 controls.sliders.forEach(function (slider) {
-                    new KG.Slider({ layer: sliderTable_1, param: slider.param, label: slider.label, digits: slider.digits, showNumber: slider.showNumber, model: controls.model, show: slider.show });
+                    new KG.Slider({ layer: sliderTable_1, param: slider.param, label: slider.label, showNumber: slider.showNumber, model: controls.model, show: slider.show });
                 });
             }
             controls.radios.forEach(function (radio) {
