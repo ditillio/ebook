@@ -69846,13 +69846,28 @@ var KG;
             // establish property defaults
             KG.setDefaults(def, {
                 noAxis: false,
-                showNumber: true,
-                digits: 2
+                showNumber: true
             });
             // define constant and updatable properties
             KG.setProperties(def, 'constants', ['noAxis', 'label', 'digits']);
             KG.setProperties(def, 'updatables', ['showNumber']);
             _this = _super.call(this, def) || this;
+            // calculate maximum number of digits
+            var slider = _this;
+            var paramObject = slider.model.getParam(slider.param);
+            // number of digits for decimals
+            var decimalPlaces = paramObject.precision;
+            function maxMinDigits(x) {
+                if (x > 0) {
+                    return Math.trunc(Math.log10(x) + 1);
+                }
+                else {
+                    return Math.trunc(Math.log10(-1 * x) + 2);
+                }
+            }
+            // number of digits for minimum
+            slider.digits = Math.max(maxMinDigits(paramObject.min), maxMinDigits(paramObject.max)) + decimalPlaces;
+            console.log("Number of digits: ", slider.digits);
             return _this;
         }
         Slider.prototype.draw = function (layer) {
